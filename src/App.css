@@ -21,6 +21,11 @@
   color: #09d3ac;
 }
 
+.temporary-hive-container {
+  max-width: 300px;
+  margin: auto;
+}
+
 .free-banner {
     display: block;
     position: fixed;
