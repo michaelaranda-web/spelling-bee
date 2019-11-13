@@ -1,14 +1,19 @@
 import React from 'react';
 import { parsePuzzleData } from '../helpers/puzzleDataParser';
+import moment from 'moment';
 
 export class PuzzleFetcher extends React.Component {
   constructor(props) {
     super(props);
     
+    const currentDay = moment(Date()).format('DD');
+    const currentMonth = moment(Date()).format('MM');
+    const currentYear = moment(Date()).format('YYYY');
+    
     this.state = {
-      day: "01",
-      month: "01",
-      year: "2019",
+      day: currentDay,
+      month: currentMonth,
+      year: currentYear,
       showDateError: false,
       fetching: false
     }
