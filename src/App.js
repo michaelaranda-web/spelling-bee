@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
 import { HiveCell } from './components/HiveCell';
-import { parsePuzzleData } from './helpers/puzzleDataParser';
-
-const testURL = 'https://nytbee.com/Bee_20180903.html';
+import PuzzleFetcher from './components/PuzzleFetcher';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.fetchPuzzleData = this.fetchPuzzleData.bind(this);
     
     this.state = {
       currentInput: "",
@@ -18,8 +14,6 @@ class App extends React.Component {
       centerLetter: '',
       outerLetters: [],
     }
-    
-    this.fetchPuzzleData();
   }
   
   componentWillMount() {
@@ -29,21 +23,6 @@ class App extends React.Component {
   componentWillUnmount() {
       document.removeEventListener("keydown", this.onKeyPress.bind(this));
   } 
-  
-  async fetchPuzzleData() {
-    fetch('https://cors-anywhere.herokuapp.com/' + testURL)
-      .then((response) => {
-        response.text().then((htmlString) => {
-          const puzzleData = parsePuzzleData(htmlString)
-          
-          this.setState({
-            validWords: puzzleData.validWords,
-            centerLetter: puzzleData.centerLetter,
-            outerLetters: puzzleData.outerLetters
-          });
-        })
-      });
-  }
   
   submitWord() {
     if (this.state.validWords.indexOf(this.state.currentInput) > -1) {
@@ -71,10 +50,22 @@ class App extends React.Component {
     }
   }
   
+  onPuzzleDataReceive(puzzleData) {
+    this.setState({
+      validWords: puzzleData.validWords,
+      centerLetter: puzzleData.centerLetter,
+      outerLetters: puzzleData.outerLetters
+    });
+  }
+  
   render() {
     return (
       <div className="App">
         <h1>Superior Spelling Bee App</h1>
+        
+        <PuzzleFetcher 
+          onPuzzleFetch={this.onPuzzleDataReceive.bind(this)}
+        />
         
         <div id="">
           <div className="sb-hive-input">

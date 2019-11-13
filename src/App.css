@@ -26,6 +26,10 @@
   margin: auto;
 }
 
+.day-picker-submit-button {
+  margin-left: 15px;
+}
+
 .free-banner {
     display: block;
     position: fixed;
