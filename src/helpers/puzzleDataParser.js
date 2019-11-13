@@ -15,10 +15,13 @@ export function parsePuzzleData(puzzleHTML) {
   const centerLetter = getCenterLetter(validWords, puzzleLetters);
   const outerLetters = getOuterLetters(centerLetter, puzzleLetters);
   
+  const pointsNeededForGenius = getPointsNeededForGenius(puzzleHTML);
+  
   return {
     validWords: validWords,
     centerLetter: centerLetter,
     outerLetters: outerLetters,
+    pointsNeededForGenius: pointsNeededForGenius,
   }
 }
 
@@ -48,4 +51,8 @@ function getOuterLetters(centerLetter, puzzleLetters) {
   letters.splice(centerLetterIndex, 1);
   
   return letters;
+}
+
+function getPointsNeededForGenius(puzzleHTML) {
+  return Number(puzzleHTML.match(/Points Needed for Genius: (\d*)/)[1]);
 }

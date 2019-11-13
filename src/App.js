@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { HiveCell } from './components/HiveCell';
 import PuzzleFetcher from './components/PuzzleFetcher';
+import ScoreBar from './components/ScoreBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class App extends React.Component {
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
       score: 0,
+      pointsNeededForGenius: 0
     })
   }
   
@@ -115,6 +117,7 @@ class App extends React.Component {
       centerLetter: puzzleData.centerLetter,
       outerLetters: puzzleData.outerLetters,
       foundWords: [],
+      pointsNeededForGenius: puzzleData.pointsNeededForGenius,
     });
   }
   
@@ -128,8 +131,6 @@ class App extends React.Component {
           onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
         />
         
-        <div id="score-section">{this.state.score}</div>
-        
         <div className="word-input">
           <div className="word-input-content">
             { this.state.currentInput }
@@ -137,6 +138,10 @@ class App extends React.Component {
         </div>
         
         <div className="temporary-hive-container">
+          <ScoreBar 
+            currentScore={this.state.score}
+            geniusScore={this.state.pointsNeededForGenius}
+          />
           <div className="sb-hive">
             <div className="hive">
               <HiveCell 

@@ -24,6 +24,7 @@
 .temporary-hive-container {
   max-width: 300px;
   margin: auto;
+  position: relative;
 }
 
 .day-picker-label {
@@ -43,6 +44,46 @@
 .reaction-face {
   width: 50px;
   height: 55px;
+}
+
+#score-bar {
+  font-size: 20px;
+  max-width: 100px;
+  position: absolute;
+  z-index: 999;
+  left: -45px;
+  top: -45px;
+}
+
+#score-bar .score-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+#score-bar .score-value {
+  min-width: 30px;
+}
+
+#score-bar .score-icon {
+  margin-right: 10px;
+  height: 25px;
+  width: 25px;
+}
+
+#score-bar .current-score-icon {
+  background: url(./assets/current_score.svg) center no-repeat;
+  background-size: contain;
+  
+  display: inline-block;
+}
+
+#score-bar .genius-score-icon {
+  background: url(./assets/genius.svg) center no-repeat;
+  background-size: contain;
+  
+  display: inline-block;
 }
 
 .score-alert {
@@ -81,7 +122,7 @@
 }
 
 .word-input {
-  padding: 20px 0 0;
+  padding: 20px 0 25px;
 }
 
 .word-input .word-input-content {
