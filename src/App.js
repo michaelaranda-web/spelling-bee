@@ -13,6 +13,7 @@ class App extends React.Component {
       foundWords: [],
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
+      score: 0,
     }
   }
   
@@ -31,21 +32,46 @@ class App extends React.Component {
       foundWords: [],
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
+      score: 0,
     })
   }
   
   submitWord() {
-    const isValidWord = this.state.validWords.indexOf(this.state.currentInput) > -1;
-    const notYetFound = this.state.foundWords.indexOf(this.state.currentInput) === -1
+    const word = this.state.currentInput;
+    
+    const isValidWord = this.state.validWords.indexOf(word) > -1;
+    const notYetFound = this.state.foundWords.indexOf(word) === -1;
     
     if (isValidWord && notYetFound) {
-      let newFoundWords = [...this.state.foundWords, this.state.currentInput]
+      this.updateScore(word);
+      
+      let newFoundWords = [...this.state.foundWords, word]
       this.setState({
         foundWords: newFoundWords
       })
     }
     
     this.setState({currentInput: ""});
+  }
+  
+  //4-letter words = 1 point, 1 extra point per letter past 4, 7 extra points for a pangram
+  updateScore(word) {
+    let pointsForWord = word.length - 3;
+    
+    if (this.isPangram(word)) { pointsForWord += 7; }
+    
+    this.setState({score: this.state.score + pointsForWord});
+  }
+  
+  isPangram(word) {
+    const lettersInWord = word.split('');
+    const allPuzzleLetters = [this.state.centerLetter, ...this.state.outerLetters];
+    
+    for (let puzzleLetter in allPuzzleLetters) {
+      if (lettersInWord.indexOf(puzzleLetter) === -1) { return false }
+    }
+    
+    return true;
   }
   
   shuffleLetters() {
@@ -101,6 +127,8 @@ class App extends React.Component {
           onPuzzleDataFetch={this.resetState.bind(this)}
           onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
         />
+        
+        <div id="score-section">{this.state.score}</div>
         
         <div className="word-input">
           <div className="word-input-content">

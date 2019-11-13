@@ -40,6 +40,41 @@
   font-size: 12px;
 }
 
+.reaction-face {
+  width: 50px;
+  height: 55px;
+}
+
+.score-alert {
+  animation:score-alert 3s 1;
+  -webkit-animation:score-alert 3s 1;
+  animation-fill-mode: forwards;
+  
+  animation-delay: 3s;
+  -webkit-animation-delay: 3s; /* Safari and Chrome */
+  -webkit-animation-fill-mode: forwards;
+} 
+
+@keyframes score-alert{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes score-alert{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+.reaction-face-akshay {
+  background: url(./assets/akshay.png) center no-repeat;
+  background-size: contain;
+}
+
+.reaction-face-mo {
+  background: url(./assets/mo.png) center no-repeat;
+  background-size: contain;
+}
+
 .fetching-message {
   color: #565656;
   font-size: 12px;
