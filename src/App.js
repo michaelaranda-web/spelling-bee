@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { HiveCell } from './components/HiveCell';
 import { parsePuzzleData } from './helpers/puzzleDataParser';
 
 const testURL = 'https://nytbee.com/Bee_20180903.html';
@@ -15,6 +16,8 @@ class App extends React.Component {
       centerLetter: '',
       outerLetters: [],
     }
+    
+    this.fetchPuzzleData();
   }
   
   async fetchPuzzleData() {
@@ -36,17 +39,26 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Superior Spelling Bee App</h1>
-        <button onClick={this.fetchPuzzleData}>Fetch</button>
         
-        <p><b>{this.state.centerLetter}</b></p>
-        <ul>
-          {
-            this.state.outerLetters.map((letter, i) => {
-              return <li key={i}>{letter}</li>
-            })
-          }
-        </ul>
+        <div id="">
+          <input 
+            autoFocus
+          />
+        </div>
         
+        <br />
+        
+        <div class="sb-hive">
+          <div class="hive">
+            <HiveCell letter={this.state.centerLetter} cellType={'center'} />
+            
+            {
+              this.state.outerLetters.map((letter, i) => {
+                return <HiveCell key={i} letter={letter} cellType={'outer'} />
+              })
+            }
+          </div>
+        </div>
       </div>
     );
   }
