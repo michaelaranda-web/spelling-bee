@@ -12,7 +12,7 @@ class App extends React.Component {
       validWords: [],
       foundWords: [],
       centerLetter: '',
-      outerLetters: [],
+      outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
     }
   }
   
@@ -24,6 +24,16 @@ class App extends React.Component {
       document.removeEventListener("keydown", this.onKeyPress.bind(this));
   } 
   
+  resetState() {
+    this.setState({
+      currentInput: "",
+      validWords: [],
+      foundWords: [],
+      centerLetter: '',
+      outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
+    })
+  }
+  
   submitWord() {
     const isValidWord = this.state.validWords.indexOf(this.state.currentInput) > -1;
     const notYetFound = this.state.foundWords.indexOf(this.state.currentInput) === -1
@@ -31,10 +41,11 @@ class App extends React.Component {
     if (isValidWord && notYetFound) {
       let newFoundWords = [...this.state.foundWords, this.state.currentInput]
       this.setState({
-        currentInput: "",
         foundWords: newFoundWords
       })
     }
+    
+    this.setState({currentInput: ""});
   }
   
   shuffleLetters() {
@@ -69,9 +80,6 @@ class App extends React.Component {
       this.deleteLetter();
     } else if (e.key === 'Enter') {
       this.submitWord();
-      this.setState({
-        currentInput: ""
-      })
     }
   }
   
@@ -80,7 +88,7 @@ class App extends React.Component {
       validWords: puzzleData.validWords,
       centerLetter: puzzleData.centerLetter,
       outerLetters: puzzleData.outerLetters,
-      foundWords: []
+      foundWords: [],
     });
   }
   
@@ -90,7 +98,8 @@ class App extends React.Component {
         <h1>Superior Spelling Bee App</h1>
         
         <PuzzleFetcher 
-          onPuzzleFetch={this.onPuzzleDataReceive.bind(this)}
+          onPuzzleDataFetch={this.resetState.bind(this)}
+          onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
         />
         
         <div className="word-input">

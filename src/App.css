@@ -40,6 +40,11 @@
   font-size: 12px;
 }
 
+.fetching-message {
+  color: #565656;
+  font-size: 12px;
+}
+
 .word-input {
   padding: 20px 0 0;
 }

@@ -9,7 +9,8 @@ export class PuzzleFetcher extends React.Component {
       day: "01",
       month: "01",
       year: "2019",
-      showDateError: false
+      showDateError: false,
+      fetching: false
     }
   }
   
@@ -34,22 +35,27 @@ export class PuzzleFetcher extends React.Component {
   }
   
   fetchPuzzle() {
+    this.setState({fetching: true});
+    
+    this.props.onPuzzleDataFetch();
+    
     const date = this.state.year + "" + this.state.month + "" + this.state.day;
     
     fetch(`https://cors-anywhere.herokuapp.com/https://nytbee.com/Bee_${date}.html` )
       .then((response) => {
         if (response.status === 404) {
-          this.setState({showDateError: true});
+          this.setState({showDateError: true, fetching: false});
         } else {
           response.text().then((htmlString) => {
             const puzzleData = parsePuzzleData(htmlString)
             
-            this.props.onPuzzleFetch(puzzleData);
+            this.props.onPuzzleDataReceive(puzzleData);
+            this.setState({fetching: false});
           })
         }
       })
       .catch((error) => {
-        this.setState({showDateError: true});
+        this.setState({showDateError: true, fetching: false});
       });
   }
   
@@ -111,6 +117,10 @@ export class PuzzleFetcher extends React.Component {
         </select>
         
         <button className="day-picker-submit-button" onClick={this.onSubmit.bind(this)}>Submit</button>
+        
+        {
+          this.state.fetching ? <p className="fetching-message">Fetching puzzle data. Please hold.</p> : null
+        }
         
         {
           this.state.showDateError ? <p className="date-error">Bad date. Please try again.</p> : null
