@@ -25,7 +25,10 @@ class App extends React.Component {
   } 
   
   submitWord() {
-    if (this.state.validWords.indexOf(this.state.currentInput) > -1) {
+    const isValidWord = this.state.validWords.indexOf(this.state.currentInput) > -1;
+    const notYetFound = this.state.foundWords.indexOf(this.state.currentInput) === -1
+    
+    if (isValidWord && notYetFound) {
       let newFoundWords = [...this.state.foundWords, this.state.currentInput]
       this.setState({
         currentInput: "",
