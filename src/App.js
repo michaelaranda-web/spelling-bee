@@ -1,11 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-
 import './App.css';
+import { parsePuzzleData } from './helpers/puzzleDataParser';
 
-import cheerio from 'cheerio';
-
-const testURL = 'https://nytbee.com/Bee_20180815.html';
+const testURL = 'https://nytbee.com/Bee_20180903.html';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +11,9 @@ class App extends React.Component {
     this.fetchPuzzleData = this.fetchPuzzleData.bind(this);
     
     this.state = {
-      validWords: []
+      validWords: [],
+      centerLetter: '',
+      outerLetters: [],
     }
   }
   
@@ -22,12 +21,13 @@ class App extends React.Component {
     fetch('https://cors-anywhere.herokuapp.com/' + testURL)
       .then((response) => {
         response.text().then((htmlString) => {
-          console.log(htmlString);
+          const puzzleData = parsePuzzleData(htmlString)
           
-          let wordsListString = htmlString.match(/\"words\"\:\[\[(.*?)\]\]/)[0];
-          let validWords = wordsListString.match(/\w+/g).slice(1);
-          
-          this.setState({validWords: validWords});
+          this.setState({
+            validWords: puzzleData.validWords,
+            centerLetter: puzzleData.centerLetter,
+            outerLetters: puzzleData.outerLetters
+          });
         })
       });
   }
@@ -38,11 +38,11 @@ class App extends React.Component {
         <h1>Superior Spelling Bee App</h1>
         <button onClick={this.fetchPuzzleData}>Fetch</button>
         
-        <h2>Answers</h2>
+        <p><b>{this.state.centerLetter}</b></p>
         <ul>
           {
-            this.state.validWords.map(word => {
-              return <li>{word}</li>
+            this.state.outerLetters.map((letter, i) => {
+              return <li key={i}>{letter}</li>
             })
           }
         </ul>
