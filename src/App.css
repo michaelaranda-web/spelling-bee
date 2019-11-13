@@ -826,14 +826,13 @@
     align-items: center;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap
 }
 
 .hive-action {
     padding: 15px 20px;
-    min-width: 90px;
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -847,7 +846,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer
+    cursor: pointer;
+    max-width: 50px;
 }
 
 .hive-action.push-active,.hive-action.action-active {
@@ -855,8 +855,9 @@
 }
 
 .hive-action__shuffle {
-    height: 50px;
-    min-width: 50px
+    background: url(./assets/shuffle.svg) center no-repeat;
+    background-size: 40%;
+    height: 30px;
 }
 
 @media (max-width: 443.98px) {

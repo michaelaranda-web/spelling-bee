@@ -28,20 +28,42 @@ class App extends React.Component {
     if (this.state.validWords.indexOf(this.state.currentInput) > -1) {
       let newFoundWords = [...this.state.foundWords, this.state.currentInput]
       this.setState({
+        currentInput: "",
         foundWords: newFoundWords
       })
     }
   }
   
+  shuffleLetters() {
+    let shuffledLetters = [...this.state.outerLetters];
+    
+    for (let i = shuffledLetters.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledLetters[i], shuffledLetters[j]] = [shuffledLetters[j], shuffledLetters[i]];
+    }
+    
+    this.setState({
+      outerLetters: shuffledLetters
+    })
+  }
+  
+  addLetter(letter) {
+    this.setState({
+      currentInput: this.state.currentInput + letter
+    });
+  }
+  
+  deleteLetter() {
+    this.setState({
+      currentInput: this.state.currentInput.slice(0, this.state.currentInput.length - 1) 
+    });
+  }
+  
   onKeyPress(e) {
     if (e.key.search(/^[a-zA-Z]$/) > -1) {
-      this.setState({
-        currentInput: this.state.currentInput + e.key
-      });
+      this.addLetter(e.key);
     } else if (e.key === 'Backspace') {
-      this.setState({
-        currentInput: this.state.currentInput.slice(0, this.state.currentInput.length - 1) 
-      });
+      this.deleteLetter();
     } else if (e.key === 'Enter') {
       this.submitWord();
       this.setState({
@@ -54,7 +76,8 @@ class App extends React.Component {
     this.setState({
       validWords: puzzleData.validWords,
       centerLetter: puzzleData.centerLetter,
-      outerLetters: puzzleData.outerLetters
+      outerLetters: puzzleData.outerLetters,
+      foundWords: []
     });
   }
   
@@ -81,14 +104,35 @@ class App extends React.Component {
         <div className="temporary-hive-container">
           <div className="sb-hive">
             <div className="hive">
-              <HiveCell letter={this.state.centerLetter} cellType={'center'} />
+              <HiveCell 
+                letter={this.state.centerLetter} 
+                cellType={'center'} 
+                onClick={this.addLetter.bind(this)}
+              />
               
               {
                 this.state.outerLetters.map((letter, i) => {
-                  return <HiveCell key={i} letter={letter} cellType={'outer'} />
+                  return <HiveCell key={i} letter={letter} cellType={'outer'} onClick={this.addLetter.bind(this)} />
                 })
               }
             </div>
+          </div>
+        </div>
+        
+        <div className="hive-actions">
+          <div 
+            className="hive-action hive-action__delete sb-touch-button"
+            onClick={this.deleteLetter.bind(this)}>
+            Delete
+          </div>
+          <div 
+            className="hive-action hive-action__shuffle sb-touch-button"
+            onClick={this.shuffleLetters.bind(this)}
+            ></div>
+          <div 
+            className="hive-action hive-action__submit sb-touch-button"
+            onClick={this.submitWord.bind(this)}>
+            Enter
           </div>
         </div>
         
