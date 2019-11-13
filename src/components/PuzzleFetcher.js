@@ -8,7 +8,8 @@ export class PuzzleFetcher extends React.Component {
     this.state = {
       day: "01",
       month: "01",
-      year: "2019"
+      year: "2019",
+      showDateError: false
     }
   }
   
@@ -17,15 +18,15 @@ export class PuzzleFetcher extends React.Component {
   }
   
   handleDayChange(event) {
-    this.setState({day: event.target.value})
+    this.setState({day: event.target.value, showDateError: false})
   }
   
   handleMonthChange(event) {
-    this.setState({month: event.target.value})
+    this.setState({month: event.target.value, showDateError: false})
   }
   
   handleYearChange(event) {
-    this.setState({year: event.target.value})
+    this.setState({year: event.target.value, showDateError: false})
   }
   
   onSubmit() {
@@ -37,17 +38,26 @@ export class PuzzleFetcher extends React.Component {
     
     fetch(`https://cors-anywhere.herokuapp.com/https://nytbee.com/Bee_${date}.html` )
       .then((response) => {
-        response.text().then((htmlString) => {
-          const puzzleData = parsePuzzleData(htmlString)
-          
-          this.props.onPuzzleFetch(puzzleData);
-        })
+        if (response.status === 404) {
+          this.setState({showDateError: true});
+        } else {
+          response.text().then((htmlString) => {
+            const puzzleData = parsePuzzleData(htmlString)
+            
+            this.props.onPuzzleFetch(puzzleData);
+          })
+        }
+      })
+      .catch((error) => {
+        this.setState({showDateError: true});
       });
   }
   
   render() {
     return (
       <div id="puzzle-fetcher">
+        <span className="day-picker-label">Day/Month/Year:</span>
+      
         <select value={this.state.day} onChange={this.handleDayChange.bind(this)}>
           <option value="01">01</option>
           <option value="02">02</option>
@@ -101,6 +111,10 @@ export class PuzzleFetcher extends React.Component {
         </select>
         
         <button className="day-picker-submit-button" onClick={this.onSubmit.bind(this)}>Submit</button>
+        
+        {
+          this.state.showDateError ? <p className="date-error">Bad date. Please try again.</p> : null
+        }
       </div>
     );
   }

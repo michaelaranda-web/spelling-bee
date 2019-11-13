@@ -26,8 +26,18 @@
   margin: auto;
 }
 
+.day-picker-label {
+  margin-right: 10px;
+  font-size: 12px;
+}
+
 .day-picker-submit-button {
   margin-left: 15px;
+}
+
+.date-error {
+  color: #c51818;
+  font-size: 12px;
 }
 
 .free-banner {
