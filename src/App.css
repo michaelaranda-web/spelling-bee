@@ -40,6 +40,35 @@
   font-size: 12px;
 }
 
+.word-input {
+  padding: 20px 0 0;
+}
+
+.word-input .word-input-content {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-rendering: optimizeLegibility;
+  line-height: 40px;
+  height: 40px;
+  padding-top: 2px;
+  text-align: center;
+}
+
+.word-input .word-input-content::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 40px;
+  background: #f8cd05;
+  -webkit-animation: 1000ms blink step-end infinite;
+  animation: 1000ms blink step-end infinite;
+}
+
 .free-banner {
     display: block;
     position: fixed;

@@ -93,16 +93,11 @@ class App extends React.Component {
           onPuzzleFetch={this.onPuzzleDataReceive.bind(this)}
         />
         
-        <div id="">
-          <div className="sb-hive-input">
-            <input 
-              className="sb-hive-input-content"
-              value={this.state.currentInput}
-            />
+        <div className="word-input">
+          <div className="word-input-content">
+            { this.state.currentInput }
           </div>
         </div>
-        
-        <br />
         
         <div className="temporary-hive-container">
           <div className="sb-hive">
