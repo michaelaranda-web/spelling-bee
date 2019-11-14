@@ -3,6 +3,7 @@ import './App.css';
 import { HiveCell } from './components/HiveCell';
 import PuzzleFetcher from './components/PuzzleFetcher';
 import ScoreBar from './components/ScoreBar';
+import Reactions from './components/Reactions';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,9 +17,7 @@ class App extends React.Component {
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
       score: 0,
       pointsNeededForGenius: 0,
-      reachedGeniusAlready: false,
-      reaction: null,
-      currentReactionTimeout: null,
+      lastValidWord: null,
     }
   }
   
@@ -39,9 +38,7 @@ class App extends React.Component {
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
       score: 0,
       pointsNeededForGenius: 0,
-      reachedGeniusAlready: false,
-      reaction: null,
-      currentReactionTimeout: null,
+      lastValidWord: null,
     })
   }
   
@@ -54,10 +51,8 @@ class App extends React.Component {
     if (isValidWord && notYetFound) {
       this.updateScore(word);
       
-      let newFoundWords = [...this.state.foundWords, word]
-      this.setState({
-        foundWords: newFoundWords
-      })
+      let newFoundWords = [...this.state.foundWords, word];
+      this.setState({foundWords: newFoundWords});
     }
     
     this.setState({currentInput: ""});
@@ -71,46 +66,11 @@ class App extends React.Component {
       pointsForWord = word.length;
     }
     
-    if (word.length === 6) {
-      this.triggerReaction('noice');
-    }
-    
-    if (word.length > 6) {
-      this.triggerReaction('long_word');
-    }
-    
     if (this.isPangram(word)) { 
-      pointsForWord += 7; 
-      this.triggerReaction('pangram');
+      pointsForWord += 7;
     }
     
-    this.setState({score: this.state.score + pointsForWord}, () => {
-      if (this.state.score >= this.state.pointsNeededForGenius && !this.state.reachedGeniusAlready) {
-        this.triggerReaction('genius');
-        this.setState({
-          reachedGeniusAlready: true
-        })
-      }
-    });
-  }
-  
-  triggerReaction(reactionType) {
-    if (this.state.currentReactionTimeout) {
-      clearTimeout(this.state.currentReactionTimeout);
-      this.setState({currentReactionTimeout: null});
-    }
-    
-    this.setState({
-      reaction: reactionType
-    }) 
-    
-    let timeout = setTimeout(() => {
-      this.setState({reaction: null})
-    }, 8000)
-    
-    this.setState({
-      currentReactionTimeout: timeout
-    })
+    this.setState({score: this.state.score + pointsForWord, lastValidWord: word});
   }
   
   isPangram(word) {
@@ -169,33 +129,6 @@ class App extends React.Component {
     });
   }
   
-  renderReaction() {
-    if (this.state.reaction === 'genius') {
-      return (
-        <div className="reaction" key={Math.random()}>
-          <div className="reaction-text">You're a genius like me!</div>
-          <div className="reaction-face-mo"></div>
-        </div>
-      )
-    } else if (this.state.reaction === 'long_word') {
-      return (
-        <div className="reaction" key={Math.random()}>
-          <div className="reaction-text">Wow!</div>
-          <div className="reaction-face-akshay"></div>  
-        </div>
-      )
-    } else if (this.state.reaction === 'noice') {
-      return (
-        <div className="reaction" key={Math.random()}>
-          <div className="reaction-text">NOICE!</div>
-          <div className="reaction-face-michael"></div>  
-        </div>
-      )
-    }
-    
-    return null;
-  }
-  
   render() {
     return (
       <div className="App">
@@ -218,9 +151,11 @@ class App extends React.Component {
             geniusScore={this.state.pointsNeededForGenius}
           />
           
-          <div id="reaction-section">
-            { this.renderReaction() }
-          </div>
+          <Reactions 
+            lastValidWord={this.state.lastValidWord} 
+            score={this.state.score}
+            pointsNeededForGenius={this.state.pointsNeededForGenius}
+          />
           
           <div className="sb-hive">
             <div className="hive">
