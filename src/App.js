@@ -136,6 +136,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
         <h1>Superior Spelling Bee App</h1>
         
         <PuzzleFetcher 
@@ -202,8 +203,6 @@ class App extends React.Component {
             })
           }
         </div>
-        
-        <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
       </div>
     );
   }

@@ -38,6 +38,7 @@
 
 #hidden-input-for-refocus {
   opacity: 0;
+  height: 0px;
 }
 
 .temporary-hive-container {
