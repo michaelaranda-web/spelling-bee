@@ -3,7 +3,7 @@ import React from 'react';
 export function HiveCell(props) {
   return (
     <svg 
-      className={`hive-cell ${props.TellType}`} 
+      className={`hive-cell ${props.cellType}`} 
       onClick={() => props.onClick(props.letter)}
       viewBox="0 0 120 103.92304845413263">
       <polygon 
