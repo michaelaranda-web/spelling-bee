@@ -85,8 +85,8 @@
 }
 
 .points-update {
-  animation:points-update-animation 2.5s 1;
-  -webkit-animation:points-update-animation 2.5s 1;
+  animation:points-update-animation 2.8s 1;
+  -webkit-animation:points-update-animation 2.8s 1;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
   
@@ -94,13 +94,13 @@
 }
 
 @keyframes points-update-animation{
-    20% { opacity: 1; }
-    80% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0; }
 }
 
 @-webkit-keyframes points-update-animation{
-    20% { opacity: 1; }
-    80% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0; }
 }
 
 #score-bar {
