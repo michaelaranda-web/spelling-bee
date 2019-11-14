@@ -8,7 +8,6 @@ export class Reactions extends React.Component {
       alreadyReachedGenius: false,
       currentReaction: null,
       timeout: null,
-      resetTransitionKey: null
     }
   }
   
@@ -22,12 +21,11 @@ export class Reactions extends React.Component {
     this.setState({
       currentReaction: reaction,
       timeout: timeout,
-      resetTransitionKey: Math.random(),
     });
   }
   
   componentDidUpdate(prevProps) {
-    if (prevProps.lastValidWord !== this.props.lastValidWord) {
+    if (prevProps.lastValidWord !== this.props.lastValidWord && this.props.lastValidWord) {
       this.onNewWordEntered();
     }
   }
@@ -42,37 +40,27 @@ export class Reactions extends React.Component {
     }
   }
   
-  renderReaction() {
-    if (this.state.currentReaction === "genius") {
-      return (
-        <div className="reaction" key={this.state.resetTransitionKey}>
-          <div className="reaction-text">You're a genius like me!</div>
-          <div className="reaction-face-mo"></div>
-        </div>
-      )
-    } else if (this.state.currentReaction === 'long_word') {
-      return (
-        <div className="reaction" key={this.state.resetTransitionKey}>
-          <div className="reaction-text">Wow!</div>
-          <div className="reaction-face-akshay"></div>  
-        </div>
-      )
-    } else if (this.state.currentReaction === 'noice') {
-      return (
-        <div className="reaction" key={this.state.resetTransitionKey}>
-          <div className="reaction-text">NOICE!</div>
-          <div className="reaction-face-michael"></div>  
-        </div>
-      )
-    }
-    
-    return null;
+  getReactionClass(reactionType) {
+    return reactionType === this.state.currentReaction
+      ? 'show-reaction'
+      : '';
   }
   
   render() {
     return (
       <div id="reaction-section">
-        {this.renderReaction()}
+        <div className={`reaction ${this.getReactionClass("genius")}`}>
+          <div className="reaction-text">You're a genius like me!</div>
+          <div className="reaction-face-mo"></div>
+        </div>
+        <div className={`reaction ${this.getReactionClass("long_word")}`}>
+          <div className="reaction-text">Wow!</div>
+          <div className="reaction-face-akshay"></div>  
+        </div>
+        <div className={`reaction ${this.getReactionClass("noice")}`}>
+          <div className="reaction-text">NOICE!</div>
+          <div className="reaction-face-michael"></div>  
+        </div>
       </div>
     );
   }

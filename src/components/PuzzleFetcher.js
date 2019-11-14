@@ -122,7 +122,12 @@ export class PuzzleFetcher extends React.Component {
           <option value="2019">2019</option>
         </select>
         
-        <button className="day-picker-submit-button" onClick={this.onSubmit.bind(this)}>Submit</button>
+        <button 
+          className="standard-button day-picker-submit-button" 
+          onClick={this.onSubmit.bind(this)}
+        >
+          Submit
+        </button>
         
         {
           this.state.fetching ? <p className="fetching-message">Fetching puzzle data. Please hold.</p> : null

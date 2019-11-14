@@ -9,6 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     
+    this.inputRef = React.createRef();
+    
     this.state = {
       currentInput: "",
       validWords: [],
@@ -22,11 +24,11 @@ class App extends React.Component {
   }
   
   componentWillMount() {
-      document.addEventListener("keydown", this.onKeyPress.bind(this));
+    document.addEventListener("keydown", this.onKeyPress.bind(this));
   }
 
   componentWillUnmount() {
-      document.removeEventListener("keydown", this.onKeyPress.bind(this));
+    document.removeEventListener("keydown", this.onKeyPress.bind(this));
   } 
   
   resetState() {
@@ -127,6 +129,8 @@ class App extends React.Component {
       foundWords: [],
       pointsNeededForGenius: puzzleData.pointsNeededForGenius,
     });
+    
+    this.inputRef.current.focus();
   }
   
   render() {
@@ -198,6 +202,8 @@ class App extends React.Component {
             })
           }
         </div>
+        
+        <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
       </div>
     );
   }

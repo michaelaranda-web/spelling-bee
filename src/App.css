@@ -21,6 +21,25 @@
   color: #09d3ac;
 }
 
+.standard-button {
+  padding: 10px 15px;
+  background-color: white;
+  font-size: 14px;
+  margin: 0 12px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+#hidden-input-for-refocus {
+  opacity: 0;
+}
+
 .temporary-hive-container {
   max-width: 300px;
   margin: auto;
@@ -95,7 +114,7 @@
 
 .reaction {
   position: relative;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   
@@ -107,6 +126,10 @@
   -webkit-animation-delay: 4s; /* Safari and Chrome */
   -webkit-animation-fill-mode: forwards;
 } 
+
+.reaction.show-reaction {
+  display: flex;
+}
 
 @keyframes reaction-animation{
     from {opacity :1;}
