@@ -65,7 +65,11 @@ class App extends React.Component {
   
   //4-letter words = 1 point, 1 extra point per letter past 4, 7 extra points for a pangram
   updateScore(word) {
-    let pointsForWord = word.length - 3;
+    let pointsForWord = 1;
+    
+    if (word.length > 4) {
+      pointsForWord = word.length;
+    }
     
     if (word.length === 6) {
       this.triggerReaction('noice');
