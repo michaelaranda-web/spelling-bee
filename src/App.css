@@ -65,6 +65,43 @@
   height: 55px;
 }
 
+.points-update {
+  display: inline-block;
+  position: absolute;
+  background: url(./assets/points-update.svg) center no-repeat;
+  background-size: contain;
+  fill: #e6e6e6;
+  
+  height: 35px;
+  width: 38px;
+  right: -30px;
+  top: -27px;
+}
+
+.points-update .points-value {
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.points-update {
+  animation:points-update-animation 2.5s 1;
+  -webkit-animation:points-update-animation 2.5s 1;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  
+  opacity: 0;
+}
+
+@keyframes points-update-animation{
+    20% { opacity: 1; }
+    80% { opacity: 0; }
+}
+
+@-webkit-keyframes points-update-animation{
+    20% { opacity: 1; }
+    80% { opacity: 0; }
+}
+
 #score-bar {
   font-size: 20px;
   max-width: 100px;
