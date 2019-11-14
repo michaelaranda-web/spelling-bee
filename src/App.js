@@ -15,6 +15,10 @@ class App extends React.Component {
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
       score: 0,
+      pointsNeededForGenius: 0,
+      reachedGeniusAlready: false,
+      reaction: null,
+      currentReactionTimeout: null,
     }
   }
   
@@ -34,7 +38,10 @@ class App extends React.Component {
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
       score: 0,
-      pointsNeededForGenius: 0
+      pointsNeededForGenius: 0,
+      reachedGeniusAlready: false,
+      reaction: null,
+      currentReactionTimeout: null,
     })
   }
   
@@ -60,9 +67,46 @@ class App extends React.Component {
   updateScore(word) {
     let pointsForWord = word.length - 3;
     
-    if (this.isPangram(word)) { pointsForWord += 7; }
+    if (word.length === 6) {
+      this.triggerReaction('noice');
+    }
     
-    this.setState({score: this.state.score + pointsForWord});
+    if (word.length > 6) {
+      this.triggerReaction('long_word');
+    }
+    
+    if (this.isPangram(word)) { 
+      pointsForWord += 7; 
+      this.triggerReaction('pangram');
+    }
+    
+    this.setState({score: this.state.score + pointsForWord}, () => {
+      if (this.state.score >= this.state.pointsNeededForGenius && !this.state.reachedGeniusAlready) {
+        this.triggerReaction('genius');
+        this.setState({
+          reachedGeniusAlready: true
+        })
+      }
+    });
+  }
+  
+  triggerReaction(reactionType) {
+    if (this.state.currentReactionTimeout) {
+      clearTimeout(this.state.currentReactionTimeout);
+      this.setState({currentReactionTimeout: null});
+    }
+    
+    this.setState({
+      reaction: reactionType
+    }) 
+    
+    let timeout = setTimeout(() => {
+      this.setState({reaction: null})
+    }, 8000)
+    
+    this.setState({
+      currentReactionTimeout: timeout
+    })
   }
   
   isPangram(word) {
@@ -121,6 +165,33 @@ class App extends React.Component {
     });
   }
   
+  renderReaction() {
+    if (this.state.reaction === 'genius') {
+      return (
+        <div className="reaction" key={Math.random()}>
+          <div className="reaction-text">You're a genius like me!</div>
+          <div className="reaction-face-mo"></div>
+        </div>
+      )
+    } else if (this.state.reaction === 'long_word') {
+      return (
+        <div className="reaction" key={Math.random()}>
+          <div className="reaction-text">Wow!</div>
+          <div className="reaction-face-akshay"></div>  
+        </div>
+      )
+    } else if (this.state.reaction === 'noice') {
+      return (
+        <div className="reaction" key={Math.random()}>
+          <div className="reaction-text">NOICE!</div>
+          <div className="reaction-face-michael"></div>  
+        </div>
+      )
+    }
+    
+    return null;
+  }
+  
   render() {
     return (
       <div className="App">
@@ -142,6 +213,11 @@ class App extends React.Component {
             currentScore={this.state.score}
             geniusScore={this.state.pointsNeededForGenius}
           />
+          
+          <div id="reaction-section">
+            { this.renderReaction() }
+          </div>
+          
           <div className="sb-hive">
             <div className="hive">
               <HiveCell 

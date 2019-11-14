@@ -86,22 +86,34 @@
   display: inline-block;
 }
 
-.score-alert {
-  animation:score-alert 3s 1;
-  -webkit-animation:score-alert 3s 1;
+#reaction-section {
+  position: absolute;
+  right: -95px;
+  top: -45px;
+  min-width: 200px;
+}
+
+.reaction {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  animation:reaction-animation 4s 1;
+  -webkit-animation:reaction-animation 4s 1;
   animation-fill-mode: forwards;
   
-  animation-delay: 3s;
-  -webkit-animation-delay: 3s; /* Safari and Chrome */
+  animation-delay: 4s;
+  -webkit-animation-delay: 4s; /* Safari and Chrome */
   -webkit-animation-fill-mode: forwards;
 } 
 
-@keyframes score-alert{
+@keyframes reaction-animation{
     from {opacity :1;}
     to {opacity :0;}
 }
 
-@-webkit-keyframes score-alert{
+@-webkit-keyframes reaction-animation{
     from {opacity :1;}
     to {opacity :0;}
 }
@@ -109,11 +121,30 @@
 .reaction-face-akshay {
   background: url(./assets/akshay.png) center no-repeat;
   background-size: contain;
+  
+  height: 50px;
+  width: 50px;
 }
 
 .reaction-face-mo {
   background: url(./assets/mo.png) center no-repeat;
   background-size: contain;
+  
+  height: 50px;
+  width: 50px;
+}
+
+.reaction-face-michael {
+  background: url(./assets/noice.png) center no-repeat;
+  background-size: contain;
+  
+  height: 50px;
+  width: 50px;
+}
+
+.reaction-text {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .fetching-message {
