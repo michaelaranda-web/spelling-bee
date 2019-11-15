@@ -31,12 +31,12 @@ export class Reactions extends React.Component {
   }
   
   onNewWordEntered() {
-    if (this.props.lastValidWord.length === 6) {
+    if (this.props.score > this.props.pointsNeededForGenius) {
+      this.setNewReaction('genius');
+    } else if (this.props.lastValidWord.length === 6) {
       this.setNewReaction('noice');
     } else if (this.props.lastValidWord.length > 6) {
       this.setNewReaction('long_word');
-    } else if (this.props.score > this.props.pointsNeededForGenius) {
-      this.setNewReaction('genius');
     }
   }
   

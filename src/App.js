@@ -4,6 +4,7 @@ import { HiveCell } from './components/HiveCell';
 import PuzzleFetcher from './components/PuzzleFetcher';
 import ScoreBar from './components/ScoreBar';
 import Reactions from './components/Reactions';
+import FoundWords from './components/FoundWords';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class App extends React.Component {
     this.setState({currentInput: ""});
   }
   
-  //4-letter words = 1 point, 1 extra point per letter past 4, 7 extra points for a pangram
+  //4-letter words = 1 point, 1 point per letter if >4 letters, 7 extra points for a pangram
   updateScore(word) {
     let pointsForWord = 1;
     
@@ -76,14 +77,7 @@ class App extends React.Component {
   }
   
   isPangram(word) {
-    const lettersInWord = word.split('');
-    const allPuzzleLetters = [this.state.centerLetter, ...this.state.outerLetters];
-    
-    for (let puzzleLetter in allPuzzleLetters) {
-      if (lettersInWord.indexOf(puzzleLetter) === -1) { return false }
-    }
-    
-    return true;
+    return [...new Set(word.split(''))].length === 7;
   }
   
   shuffleLetters() {
@@ -129,80 +123,77 @@ class App extends React.Component {
       foundWords: [],
       pointsNeededForGenius: puzzleData.pointsNeededForGenius,
     });
-    
-    this.inputRef.current.focus();
   }
   
   render() {
     return (
       <div className="App">
-        <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
-        <h1>Superior Spelling Bee App</h1>
-        
-        <PuzzleFetcher 
-          onPuzzleDataFetch={this.resetState.bind(this)}
-          onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
-        />
-        
-        <div className="word-input">
-          <div className="word-input-content">
-            { this.state.currentInput }
+        <div className="app-section left-app-section">
+          <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
+          <h1>Superior Spelling Bee App</h1>
+          
+          <PuzzleFetcher 
+            onPuzzleDataFetch={() => { this.resetState(); this.inputRef.current.focus(); }}
+            onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
+          />
+          
+          <div className="word-input">
+            <div className="word-input-content">
+              { this.state.currentInput }
+            </div>
           </div>
-        </div>
-        
-        <div className="temporary-hive-container">
-          <ScoreBar 
-            currentScore={this.state.score}
-            geniusScore={this.state.pointsNeededForGenius}
-          />
           
-          <Reactions 
-            lastValidWord={this.state.lastValidWord} 
-            score={this.state.score}
-            pointsNeededForGenius={this.state.pointsNeededForGenius}
-          />
+          <div className="temporary-hive-container">
+            <ScoreBar 
+              currentScore={this.state.score}
+              geniusScore={this.state.pointsNeededForGenius}
+            />
+            
+            <Reactions 
+              lastValidWord={this.state.lastValidWord} 
+              score={this.state.score}
+              pointsNeededForGenius={this.state.pointsNeededForGenius}
+            />
+            
+            <div className="sb-hive">
+              <div className="hive">
+                <HiveCell 
+                  letter={this.state.centerLetter} 
+                  cellType={'center'} 
+                  onClick={this.addLetter.bind(this)}
+                />
+                
+                {
+                  this.state.outerLetters.map((letter, i) => {
+                    return <HiveCell key={i} letter={letter} cellType={'outer'} onClick={this.addLetter.bind(this)} />
+                  })
+                }
+              </div>
+            </div>
+          </div>
           
-          <div className="sb-hive">
-            <div className="hive">
-              <HiveCell 
-                letter={this.state.centerLetter} 
-                cellType={'center'} 
-                onClick={this.addLetter.bind(this)}
-              />
-              
-              {
-                this.state.outerLetters.map((letter, i) => {
-                  return <HiveCell key={i} letter={letter} cellType={'outer'} onClick={this.addLetter.bind(this)} />
-                })
-              }
+          <div className="hive-actions">
+            <div 
+              className="hive-action hive-action__delete sb-touch-button"
+              onClick={this.deleteLetter.bind(this)}>
+              Delete
+            </div>
+            <div 
+              className="hive-action hive-action__shuffle sb-touch-button"
+              onClick={this.shuffleLetters.bind(this)}
+              ></div>
+            <div 
+              className="hive-action hive-action__submit sb-touch-button"
+              onClick={this.submitWord.bind(this)}>
+              Enter
             </div>
           </div>
         </div>
         
-        <div className="hive-actions">
-          <div 
-            className="hive-action hive-action__delete sb-touch-button"
-            onClick={this.deleteLetter.bind(this)}>
-            Delete
-          </div>
-          <div 
-            className="hive-action hive-action__shuffle sb-touch-button"
-            onClick={this.shuffleLetters.bind(this)}
-            ></div>
-          <div 
-            className="hive-action hive-action__submit sb-touch-button"
-            onClick={this.submitWord.bind(this)}>
-            Enter
-          </div>
-        </div>
+        <div className="app-section right-app-section">
+          <FoundWords foundWords={this.state.foundWords} />
+        </div>  
         
-        <div id="found-words-section">
-          {
-            this.state.foundWords.map((foundWord, i) => {
-              return <p key={i}>{foundWord}</p>
-            })
-          }
-        </div>
       </div>
     );
   }

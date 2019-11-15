@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -19,6 +21,34 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.app-section {
+  padding: 0 15px;
+}
+  
+.left-app-section {
+  background-color: #FFFFFF;
+}
+
+.right-app-section {
+  background-color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+  .App {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .left-app-section {
+    background-color: #FFFFFF;
+  }
+  
+  .right-app-section {
+    width: 300px;
+    background-color: #FFFFFF;
+  }
 }
 
 .standard-button {
@@ -156,12 +186,12 @@
   flex-direction: column;
   align-items: center;
   
-  animation:reaction-animation 4s 1;
-  -webkit-animation:reaction-animation 4s 1;
+  animation:reaction-animation 2.5s 1;
+  -webkit-animation:reaction-animation 2.5s 1;
   animation-fill-mode: forwards;
   
-  animation-delay: 4s;
-  -webkit-animation-delay: 4s; /* Safari and Chrome */
+  animation-delay: 2.5s;
+  -webkit-animation-delay: 2.5s; /* Safari and Chrome */
   -webkit-animation-fill-mode: forwards;
 } 
 
@@ -240,6 +270,39 @@
   background: #f8cd05;
   -webkit-animation: 1000ms blink step-end infinite;
   animation: 1000ms blink step-end infinite;
+}
+
+#found-words-section {
+  height: 100%;
+}
+
+#found-words-section #found-words-list-box {
+  height: 90%;
+  
+  padding: 20px 0 25px 20px;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: 0px;
+  -moz-column-gap: 0px;
+  column-gap: 0px;
+  -webkit-column-fill: auto;
+  -moz-column-fill: auto;
+  column-fill: auto;
+  
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+}
+
+#found-words-section #found-words-list-box .found-words-list-item {
+  display: inline-block;
+  width: 80%;
+  padding: 4px 0;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #dcdcdc;
+  margin-right: 10px;
+  text-align: left;
+  font-size: 14px;
 }
 
 .free-banner {
