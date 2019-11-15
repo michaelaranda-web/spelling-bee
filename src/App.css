@@ -310,6 +310,11 @@
   margin-right: 10px;
   text-align: left;
   font-size: 14px;
+  font-weight: bold;
+}
+
+#found-words-section #found-words-list-box .found-words-list-item.grey-out {
+  color: #9f9f9f;
 }
 
 .free-banner {

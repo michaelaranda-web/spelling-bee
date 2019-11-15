@@ -192,7 +192,10 @@ class App extends React.Component {
         </div>
         
         <div className="app-section right-app-section">
-          <FoundWords foundWords={this.state.foundWords} />
+          <FoundWords 
+            currentInput={this.state.currentInput}
+            foundWords={this.state.foundWords} 
+          />
         </div>  
         
       </div>
