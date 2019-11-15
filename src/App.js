@@ -5,6 +5,7 @@ import PuzzleFetcher from './components/PuzzleFetcher';
 import ScoreBar from './components/ScoreBar';
 import Reactions from './components/Reactions';
 import FoundWords from './components/FoundWords';
+import WordInput from './components/WordInput';
 
 class App extends React.Component {
   constructor(props) {
@@ -137,11 +138,11 @@ class App extends React.Component {
             onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
           />
           
-          <div className="word-input">
-            <div className="word-input-content">
-              { this.state.currentInput }
-            </div>
-          </div>
+          <WordInput 
+            currentInput={this.state.currentInput}
+            outerLetters={this.state.outerLetters}
+            centerLetter={this.state.centerLetter}
+          />
           
           <div className="temporary-hive-container">
             <ScoreBar 

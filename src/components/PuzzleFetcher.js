@@ -52,7 +52,6 @@ export class PuzzleFetcher extends React.Component {
           this.setState({showDateError: true, fetching: false});
         } else {
           response.text().then((htmlString) => {
-            console.log(htmlString);
             const puzzleData = parsePuzzleData(htmlString)
             
             this.props.onPuzzleDataReceive(puzzleData);

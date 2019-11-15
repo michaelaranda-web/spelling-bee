@@ -101,7 +101,6 @@
   position: absolute;
   background: url(./assets/points-update.svg) center no-repeat;
   background-size: contain;
-  fill: #e6e6e6;
   
   height: 35px;
   width: 38px;
@@ -258,6 +257,14 @@
   height: 40px;
   padding-top: 2px;
   text-align: center;
+}
+
+.word-input .word-input-content .invalid-letter {
+  color: #c3c3c3;
+}
+
+.word-input .word-input-content .center-letter {
+  color: #f8cd05;
 }
 
 .word-input .word-input-content::after {
