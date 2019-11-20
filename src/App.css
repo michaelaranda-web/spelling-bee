@@ -96,6 +96,10 @@
   height: 55px;
 }
 
+.points-update-section {
+  position: relative;
+}
+
 .points-update {
   display: inline-block;
   position: absolute;
@@ -104,8 +108,8 @@
   
   height: 35px;
   width: 38px;
-  right: -30px;
-  top: -27px;
+  right: -37px;
+  top: -38px;
 }
 
 .points-update .points-value {
@@ -174,23 +178,19 @@
 
 #reaction-section {
   position: absolute;
-  right: -95px;
+  right: 20px;
   top: -45px;
-  min-width: 200px;
 }
 
 .reaction {
-  position: relative;
-  display: none;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
   
-  animation:reaction-animation 2.5s 1;
-  -webkit-animation:reaction-animation 2.5s 1;
+  animation:reaction-animation 2s 1;
+  -webkit-animation:reaction-animation 2s 1;
   animation-fill-mode: forwards;
   
-  animation-delay: 2.5s;
-  -webkit-animation-delay: 2.5s; /* Safari and Chrome */
+  animation-delay: 2s;
+  -webkit-animation-delay: 2s; /* Safari and Chrome */
   -webkit-animation-fill-mode: forwards;
 } 
 

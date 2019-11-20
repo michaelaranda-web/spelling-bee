@@ -6,21 +6,13 @@ export class Reactions extends React.Component {
     
     this.state = {
       alreadyReachedGenius: false,
-      currentReaction: null,
-      timeout: null,
+      reactionUpdates: []
     }
   }
   
   setNewReaction(reaction) {
-    clearTimeout(this.state.timeout);
-    
-    let timeout = setTimeout(() => { 
-      this.setState({ currentReaction: null });
-    }, 8000)
-    
     this.setState({
-      currentReaction: reaction,
-      timeout: timeout,
+      reactionUpdates: [...this.state.reactionUpdates, reaction],
     });
   }
   
@@ -31,8 +23,9 @@ export class Reactions extends React.Component {
   }
   
   onNewWordEntered() {
-    if (this.props.score > this.props.pointsNeededForGenius) {
+    if (this.props.score >= this.props.pointsNeededForGenius && !this.state.alreadyReachedGenius) {
       this.setNewReaction('genius');
+      this.setState({ alreadyReachedGenius: true });
     } else if (this.props.lastValidWord.length === 6) {
       this.setNewReaction('noice');
     } else if (this.props.lastValidWord.length > 6) {
@@ -40,27 +33,39 @@ export class Reactions extends React.Component {
     }
   }
   
-  getReactionClass(reactionType) {
-    return reactionType === this.state.currentReaction
-      ? 'show-reaction'
-      : '';
+  renderReaction(reaction, i) {
+    if (reaction === 'genius') {
+      return (
+        <div className='reaction' key={i}>
+          <div className="reaction-text">You're a genius like me!</div>
+          <div className="reaction-face-mo"></div>
+        </div>
+      );
+    } else if (reaction === 'long_word') {
+      return (
+        <div className='reaction' key={i}>
+          <div className="reaction-text">Wow!</div>
+          <div className="reaction-face-akshay"></div>  
+        </div>
+      );
+    } else if (reaction === 'noice') {
+      return (
+        <div className='reaction' key={i}>
+          <div className="reaction-text">NOICE!</div>
+          <div className="reaction-face-michael"></div>  
+        </div>
+      );
+    }
   }
   
   render() {
     return (
       <div id="reaction-section">
-        <div className={`reaction ${this.getReactionClass("genius")}`}>
-          <div className="reaction-text">You're a genius like me!</div>
-          <div className="reaction-face-mo"></div>
-        </div>
-        <div className={`reaction ${this.getReactionClass("long_word")}`}>
-          <div className="reaction-text">Wow!</div>
-          <div className="reaction-face-akshay"></div>  
-        </div>
-        <div className={`reaction ${this.getReactionClass("noice")}`}>
-          <div className="reaction-text">NOICE!</div>
-          <div className="reaction-face-michael"></div>  
-        </div>
+        { 
+          this.state.reactionUpdates.map((reaction, i) => {
+            return this.renderReaction(reaction, i);
+          }) 
+        }
       </div>
     );
   }

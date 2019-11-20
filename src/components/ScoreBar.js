@@ -5,8 +5,7 @@ export class ScoreBar extends React.Component {
     super(props);
     
     this.state = {
-      pointsUpdate: 0,
-      showPointsUpdate: false,
+      pointsUpdates: [],
     }
   }
   
@@ -15,22 +14,17 @@ export class ScoreBar extends React.Component {
       const pointsUpdate = this.props.currentScore - prevProps.currentScore;
       
       this.setState({
-        pointsUpdate: pointsUpdate,
-        showPointsUpdate: true
-      });
-      
-      setTimeout(() => {this.setState({showPointsUpdate: false})}, 1500);
+        pointsUpdates: [...this.state.pointsUpdates, pointsUpdate]
+      })
     }
   }
   
-  renderPointsUpdate() {
-    if (this.state.showPointsUpdate) {
+  renderPointsUpdate(pointsScored, index) {
       return (
-        <div className="points-update">
-          <div className="points-value">{this.state.pointsUpdate}</div>
+        <div className="points-update" key={index}>
+          <div className="points-value">{pointsScored}</div>
         </div>  
       );
-    }
   }
   
   render() {
@@ -38,7 +32,13 @@ export class ScoreBar extends React.Component {
       <div id="score-bar">
         <div className="score-row">
           <span className="score-icon current-score-icon"></span><span className="score-value">{this.props.currentScore}</span>
-          {this.renderPointsUpdate()}
+          <div className="points-update-section">
+            {
+              this.state.pointsUpdates.map((pointsScored, i) => {
+                return this.renderPointsUpdate(pointsScored, i)
+              })
+            }
+          </div>
         </div>
         <div className="score-row">
           <span className="score-icon genius-score-icon"></span>

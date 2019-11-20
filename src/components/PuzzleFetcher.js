@@ -6,9 +6,9 @@ export class PuzzleFetcher extends React.Component {
   constructor(props) {
     super(props);
     
-    const currentDay = moment(Date()).format('DD');
-    const currentMonth = moment(Date()).format('MM');
-    const currentYear = moment(Date()).format('YYYY');
+    const currentDay = moment().format('DD');
+    const currentMonth = moment().format('MM');
+    const currentYear = moment().format('YYYY');
     
     this.state = {
       day: currentDay,
