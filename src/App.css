@@ -42,12 +42,12 @@
   }
   
   .left-app-section {
-    background-color: #FFFFFF;
+    padding: 0 15px;
   }
   
   .right-app-section {
     width: 300px;
-    background-color: #FFFFFF;
+    padding: 0 25px 0 15px;
   }
 }
 
@@ -178,12 +178,17 @@
 
 #reaction-section {
   position: absolute;
-  right: 20px;
+  right: -95px;
   top: -45px;
+  width: 200px;
 }
 
 .reaction {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
   
   animation:reaction-animation 2s 1;
   -webkit-animation:reaction-animation 2s 1;
@@ -233,8 +238,10 @@
 }
 
 .reaction-text {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
+  max-width: 200px;
+  overflow-wrap: break-word;
 }
 
 .fetching-message {
