@@ -1,5 +1,4 @@
 import React from 'react';
-import { parsePuzzleData } from '../helpers/puzzleDataParser';
 import moment from 'moment';
 
 export class PuzzleFetcher extends React.Component {
@@ -15,6 +14,7 @@ export class PuzzleFetcher extends React.Component {
       month: currentMonth,
       year: currentYear,
       showDateError: false,
+      showServerError: false,
       fetching: false
     }
   }
@@ -24,15 +24,15 @@ export class PuzzleFetcher extends React.Component {
   }
   
   handleDayChange(event) {
-    this.setState({day: event.target.value, showDateError: false})
+    this.setState({day: event.target.value, showServerError: false, showDateError: false})
   }
   
   handleMonthChange(event) {
-    this.setState({month: event.target.value, showDateError: false})
+    this.setState({month: event.target.value, showServerError: false, showDateError: false})
   }
   
   handleYearChange(event) {
-    this.setState({year: event.target.value, showDateError: false})
+    this.setState({year: event.target.value, showServerError: false, showDateError: false})
   }
   
   onSubmit() {
@@ -46,14 +46,14 @@ export class PuzzleFetcher extends React.Component {
     
     const date = this.state.year + "" + this.state.month + "" + this.state.day;
     
-    fetch(`https://cors-anywhere.herokuapp.com/https://nytbee.com/Bee_${date}.html` )
+    fetch(`https://cors-anywhere.herokuapp.com/http://ec2-34-219-176-146.us-west-2.compute.amazonaws.com:8080/puzzles/${date}` )
       .then((response) => {
         if (response.status === 404) {
           this.setState({showDateError: true, fetching: false});
+        } else if (response.status >= 500) { 
+          this.setState({showServerError: true, fetching: false});
         } else {
-          response.text().then((htmlString) => {
-            const puzzleData = parsePuzzleData(htmlString)
-            
+          response.json().then((puzzleData) => {
             this.props.onPuzzleDataReceive(puzzleData);
             this.setState({fetching: false});
           })
@@ -134,6 +134,10 @@ export class PuzzleFetcher extends React.Component {
         
         {
           this.state.showDateError ? <p className="date-error">Bad date. Please try again.</p> : null
+        }
+        
+        {
+          this.state.showServerError ? <p className="date-error">Server error. Please try again.</p> : null
         }
       </div>
     );
