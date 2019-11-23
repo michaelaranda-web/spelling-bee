@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import PuzzleDatePicker from './PuzzleDatePicker';
 
 export class PuzzleOptions extends React.Component {
@@ -11,6 +12,15 @@ export class PuzzleOptions extends React.Component {
   }
   
   onOptionClick(option) {
+    if (option === this.state.optionSelected) { return; }
+    
+    if (option === 'latest') {
+      const currentDay = moment().format('YYYYMMDD');
+      this.props.onDatePickerSubmit(currentDay);
+    } else if (option === 'random') {
+      this.props.onDatePickerSubmit('random');
+    }
+    
     this.setState({optionSelected: option});
   }
   
