@@ -4,13 +4,36 @@ export class CustomSelect extends React.Component {
   constructor(props) {
     super(props);
     
+    this.handleClick = this.handleClick.bind(this);
+    
     this.state = {
       selected: props.initialValue,
       showOptions: false,
     }
   }
   
-  handleSelect(selectedValue) {
+  componentDidMount() {
+    document.addEventListener('click', this.handleClick, false);
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick, false);
+  }
+  
+  handleClick(event) {
+    if (event.target.className === 'select-selected') {
+      return;
+    }
+    
+    this.setState({showOptions: false});
+  }
+  
+  handleNativeSelect(event) {
+    const selectedValue = event.target.value;
+    this.setState({selected: selectedValue, showOptions: false}, () => this.props.onSelect(selectedValue));
+  }
+  
+  handleCustomSelect(selectedValue) {
     this.setState({selected: selectedValue, showOptions: false}, () => this.props.onSelect(selectedValue));
   }
   
@@ -37,7 +60,7 @@ export class CustomSelect extends React.Component {
                   className={optionClass} 
                   key={i} 
                   value={`${option}`}
-                  onClick={() => this.handleSelect(option)}
+                  onClick={() => this.handleCustomSelect(option)}
                 >
                   {option}
                 </div>
@@ -54,7 +77,7 @@ export class CustomSelect extends React.Component {
       <div className="custom-select">
         {this.renderSelected()}
         {this.renderOptions()}
-        <select value={this.state.selected} onChange={this.handleSelect.bind(this)}>
+        <select value={this.state.selected} onChange={this.handleNativeSelect.bind(this)}>
           {
             this.props.options.map((option, i) => {
               return <option key={i} value={`${option}`}>{option}</option>
@@ -63,6 +86,10 @@ export class CustomSelect extends React.Component {
         </select>
       </div>
     );  
+  }
+  
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }
 

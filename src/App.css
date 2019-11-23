@@ -94,9 +94,8 @@
 }
 
 #puzzle-fetcher #puzzle-options .puzzle-option.selected {
-  color: #FFFFFF;
   padding: 12px;
-  background-color: #45862b;
+  background-color: #ffd45b;
 }
 
 /* The container must be positioned relative: */
@@ -106,7 +105,6 @@
 }
 
 .custom-select select {
-  display: none; /*hide original SELECT element: */
 }
 
 .date-picker-container {
@@ -115,13 +113,34 @@
   padding-right: 5px;
 }
 
+.date-picker-container select {
+  height: 32px;
+  width: 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .date-picker-container select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .date-picker-container select {
+    display : none;
+  }
+}
+
 .select-selected {
-  background-color: DodgerBlue;
+  background-color: #f7f7f7;
+  z-index: 999;
 }
 
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-  color: #ffffff;
+  color: #000000;
   padding: 5px 26px 5px 8px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -137,7 +156,7 @@
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+  border-color: #000 transparent transparent transparent;
 }
 
 /* Point the arrow upwards when the select box is open (active): */
@@ -149,11 +168,14 @@
 /* Style items (options): */
 .select-items {
   position: absolute;
-  background-color: DodgerBlue;
+  background-color: #f7f7f7;
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 99;
+  z-index: 999;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 200px;
 }
 
 .select-items div:hover, .same-as-selected {
@@ -237,7 +259,7 @@
   font-size: 20px;
   max-width: 100px;
   position: absolute;
-  z-index: 999;
+  z-index: 100;
   left: -45px;
   top: -45px;
 }

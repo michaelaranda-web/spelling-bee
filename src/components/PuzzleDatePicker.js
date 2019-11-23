@@ -41,7 +41,7 @@ export class PuzzleDatePicker extends React.Component {
           <CustomSelect 
             initialValue={this.state.day}
             onSelect={(day) => { this.handleDayChange(day) }}
-            options={["01", "02", "02", "03", "04", "05", "06", "07", "08", "09", 
+            options={["01", "02", "03", "04", "05", "06", "07", "08", "09", 
                       "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", 
                       "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]}
           />
@@ -52,7 +52,7 @@ export class PuzzleDatePicker extends React.Component {
           <CustomSelect 
             initialValue={this.state.month}
             onSelect={(month) => { this.handleMonthChange(month) }}
-            options={["01", "02", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]}
+            options={["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]}
           />
           <div className="date-picker-container-label">Month</div>
         </div>
