@@ -17,20 +17,20 @@ export class PuzzleDatePicker extends React.Component {
   }
   
   handleDayChange(event) {
-    this.setState({day: event.target.value}, () => this.props.onDateSelectChange());
+    this.setState({day: event.target.value}, () => this.props.onDatePickerChange());
   }
   
   handleMonthChange(event) {
-    this.setState({month: event.target.value}, () => this.props.onDateSelectChange());
+    this.setState({month: event.target.value}, () => this.props.onDatePickerChange());
   }
   
   handleYearChange(event) {
-    this.setState({year: event.target.value}, () => this.props.onDateSelectChange());
+    this.setState({year: event.target.value}, () => this.props.onDatePickerChange());
   }
   
   onSubmit() {
     const date = this.state.year + "" + this.state.month + "" + this.state.day;
-    this.props.onSubmit(date)
+    this.props.onDatePickerSubmit(date)
   }
   
   render() {

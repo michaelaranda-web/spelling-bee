@@ -77,6 +77,32 @@
   position: relative;
 }
 
+#puzzle-fetcher #puzzle-options {
+  display: flex;
+  align-items: center;
+  width: 325px;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#puzzle-fetcher #puzzle-options .puzzle-option {
+  flex-grow: 1;
+}
+
+#puzzle-fetcher #puzzle-options .puzzle-option.selected {
+  color: #FFFFFF;
+  padding: 12px;
+  background-color: #45862b;
+}
+
+.date-picker-section {
+  padding-top: 20px;
+}
+
 .day-picker-label {
   margin-right: 10px;
   font-size: 12px;

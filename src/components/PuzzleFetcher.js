@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import PuzzleDatePicker from './PuzzleDatePicker'
+import PuzzleOptions from './PuzzleOptions'
 
 export class PuzzleFetcher extends React.Component {
   constructor(props) {
@@ -44,9 +44,9 @@ export class PuzzleFetcher extends React.Component {
   render() {
     return (
       <div id="puzzle-fetcher">
-        <PuzzleDatePicker 
-          onDateSelectChange={() => this.setState({showDateError: false, showServerError: false})} 
-          onSubmit={(date) => this.fetchPuzzle(date)}
+        <PuzzleOptions 
+          onDatePickerChange={() => this.setState({showDateError: false, showServerError: false})} 
+          onDatePickerSubmit={(date) => this.fetchPuzzle(date)}
         />
         
         {
