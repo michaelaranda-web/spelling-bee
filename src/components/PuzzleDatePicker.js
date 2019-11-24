@@ -6,6 +6,8 @@ export class PuzzleDatePicker extends React.Component {
   constructor(props) {
     super(props);
     
+    this.submitButtonRef = React.createRef();
+    
     const currentDay = moment().format('DD');
     const currentMonth = moment().format('MM');
     const currentYear = moment().format('YYYY');
@@ -31,7 +33,9 @@ export class PuzzleDatePicker extends React.Component {
   
   onSubmit() {
     const date = this.state.year + "" + this.state.month + "" + this.state.day;
-    this.props.onDatePickerSubmit(date)
+    this.props.onDatePickerSubmit(date);
+    
+    this.submitButtonRef.current.blur();
   }
   
   render() {
@@ -68,6 +72,7 @@ export class PuzzleDatePicker extends React.Component {
         
         <button 
           className="standard-button day-picker-submit-button" 
+          ref={this.submitButtonRef}
           onClick={this.onSubmit.bind(this)}
         >
           Submit

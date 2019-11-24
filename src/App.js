@@ -11,8 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     
-    this.inputRef = React.createRef();
-    
     this.state = {
       currentInput: "",
       validWords: [],
@@ -130,11 +128,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="app-section left-app-section">
-          <input id="hidden-input-for-refocus" value="" ref={this.inputRef} />
           <h1>Superior Spelling Bee App</h1>
           
           <PuzzleFetcher 
-            onPuzzleDataFetch={() => { this.resetState(); this.inputRef.current.focus(); }}
+            onPuzzleDataFetch={() => { this.resetState() }}
             onPuzzleDataReceive={this.onPuzzleDataReceive.bind(this)}
           />
           

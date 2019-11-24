@@ -23,6 +23,10 @@
   color: #09d3ac;
 }
 
+h1 {
+  font-size: 1.8em;
+}
+
 .app-section {
   padding: 0 15px;
 }
