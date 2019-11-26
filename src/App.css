@@ -76,7 +76,7 @@ h1 {
 }
 
 .temporary-hive-container {
-  max-width: 300px;
+  max-width: 375px;
   margin: auto;
   position: relative;
 }
@@ -260,11 +260,10 @@ h1 {
 }
 
 #score-bar {
-  font-size: 20px;
+  font-size: 18px;
   max-width: 100px;
   position: absolute;
   z-index: 100;
-  left: -45px;
   top: -45px;
 }
 
@@ -281,8 +280,8 @@ h1 {
 
 #score-bar .score-icon {
   margin-right: 10px;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 #score-bar .current-score-icon {
