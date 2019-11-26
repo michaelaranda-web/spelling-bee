@@ -28,9 +28,15 @@ export class Reactions extends React.Component {
       this.setState({ alreadyReachedGenius: true });
     } else if (this.props.lastValidWord.length === 6) {
       this.addNewReaction('noice');
+    } else if (this.isPangram(this.props.lastValidWord)) {
+      this.addNewReaction('pangram');
     } else if (this.props.lastValidWord.length > 6) {
       this.addNewReaction('long_word');
     }
+  }
+  
+  isPangram(word) {
+    return [...new Set(word.split(''))].length === 7;
   }
   
   getReaction(reaction, key) {
@@ -53,6 +59,13 @@ export class Reactions extends React.Component {
         <div className='reaction' key={key}>
           <div className="reaction-text">NOICE!</div>
           <div className="reaction-face-michael"></div>  
+        </div>
+      );
+    } else if (reaction === 'pangram') {
+      return (
+        <div className='reaction' key={key}>
+          <div className="reaction-text">Oh man! A pangram!</div>
+          <div className="reaction-face-david"></div>  
         </div>
       );
     }

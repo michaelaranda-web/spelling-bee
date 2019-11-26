@@ -339,24 +339,32 @@ h1 {
   background: url(./assets/akshay.png) center no-repeat;
   background-size: contain;
   
-  height: 50px;
-  width: 50px;
+  height: 58px;
+  width: 58px;
 }
 
 .reaction-face-mo {
   background: url(./assets/mo.png) center no-repeat;
   background-size: contain;
   
-  height: 50px;
-  width: 50px;
+  height: 58px;
+  width: 58px;
 }
 
 .reaction-face-michael {
   background: url(./assets/noice.png) center no-repeat;
   background-size: contain;
   
-  height: 50px;
-  width: 50px;
+  height: 58px;
+  width: 58px;
+}
+
+.reaction-face-david {
+  background: url(./assets/david.png) center no-repeat;
+  background-size: contain;
+  
+  height: 58px;
+  width: 58px;
 }
 
 .reaction-text {

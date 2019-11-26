@@ -50,7 +50,7 @@ export class PuzzleFetcher extends React.Component {
       <div id="puzzle-fetcher">
         <PuzzleOptions 
           onDatePickerChange={() => this.setState({showDateError: false, showServerError: false})} 
-          onDatePickerSubmit={(date) => this.fetchPuzzle(date)}
+          onDatePickerSubmit={(date) => { this.props.onPuzzleDataFetch(); this.fetchPuzzle(date); }}
         />
         
         {
