@@ -6,13 +6,13 @@ export class Reactions extends React.Component {
     
     this.state = {
       alreadyReachedGenius: false,
-      reactionUpdates: []
+      reactions: []
     }
   }
   
-  setNewReaction(reaction) {
+  addNewReaction(reaction) {
     this.setState({
-      reactionUpdates: [...this.state.reactionUpdates, reaction],
+      reactions: [...this.state.reactions, this.getReaction(reaction, `reaction-${this.state.reactions.length}`)],
     });
   }
   
@@ -24,33 +24,33 @@ export class Reactions extends React.Component {
   
   onNewWordEntered() {
     if (this.props.score >= this.props.pointsNeededForGenius && !this.state.alreadyReachedGenius) {
-      this.setNewReaction('genius');
+      this.addNewReaction('genius');
       this.setState({ alreadyReachedGenius: true });
     } else if (this.props.lastValidWord.length === 6) {
-      this.setNewReaction('noice');
+      this.addNewReaction('noice');
     } else if (this.props.lastValidWord.length > 6) {
-      this.setNewReaction('long_word');
+      this.addNewReaction('long_word');
     }
   }
   
-  renderReaction(reaction, i) {
+  getReaction(reaction, key) {
     if (reaction === 'genius') {
       return (
-        <div className='reaction' key={i}>
+        <div className='reaction' key={key}>
           <div className="reaction-text">You're a genius like me!</div>
           <div className="reaction-face-mo"></div>
         </div>
       );
     } else if (reaction === 'long_word') {
       return (
-        <div className='reaction' key={i}>
+        <div className='reaction' key={key}>
           <div className="reaction-text">Wow!</div>
           <div className="reaction-face-akshay"></div>  
         </div>
       );
     } else if (reaction === 'noice') {
       return (
-        <div className='reaction' key={i}>
+        <div className='reaction' key={key}>
           <div className="reaction-text">NOICE!</div>
           <div className="reaction-face-michael"></div>  
         </div>
@@ -62,9 +62,7 @@ export class Reactions extends React.Component {
     return (
       <div id="reaction-section">
         { 
-          this.state.reactionUpdates.map((reaction, i) => {
-            return this.renderReaction(reaction, i);
-          }) 
+          this.state.reactions
         }
       </div>
     );

@@ -58,7 +58,8 @@ export class CustomSelect extends React.Component {
               return (
                 <div 
                   className={optionClass} 
-                  key={i} 
+                  key={`custom-option-${this.props.options.length + i}`} 
+                  //adding options length to the key id helps with uniqueness across multiple instances of CustomSelect
                   value={`${option}`}
                   onClick={() => this.handleCustomSelect(option)}
                 >
@@ -72,24 +73,33 @@ export class CustomSelect extends React.Component {
     }
   }
   
+  renderNativeSelect() {
+    return (
+      <select value={this.state.selected} onChange={this.handleNativeSelect.bind(this)}>
+        {
+          this.props.options.map((option, i) => {
+            return (
+              <option 
+                key={`native-option-${this.props.options.length + i}`} 
+                //adding options length to the key id helps with uniqueness across multiple instances of CustomSelect
+                value={`${option}`}>
+                {option}
+              </option>
+            )
+          })
+        }
+      </select>  
+    );
+  }
+  
   render() {
     return (
       <div className="custom-select">
         {this.renderSelected()}
         {this.renderOptions()}
-        <select value={this.state.selected} onChange={this.handleNativeSelect.bind(this)}>
-          {
-            this.props.options.map((option, i) => {
-              return <option key={i} value={`${option}`}>{option}</option>
-            })
-          }
-        </select>
+        {this.renderNativeSelect()}
       </div>
     );  
-  }
-  
-  getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
   }
 }
 

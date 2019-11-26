@@ -1,20 +1,24 @@
 import React from 'react';
 
+const FoundWordItem = (props) => {
+  return <li className={props.componentClass}>{props.word}</li>;
+};
+
 export const FoundWords = (props) => {
   return (
     <div id="found-words-section">
       <ul id="found-words-list-box">
         {
-          props.foundWords.sort().map((foundWord, i) => {
+          props.foundWords.sort().map((foundWord) => {
             if (props.currentInput !== "") {
               if (foundWord.startsWith(props.currentInput)) {
-                return <li key={i} className="found-words-list-item">{foundWord}</li>
+                return <FoundWordItem key={foundWord} componentClass="found-words-list-item" word={foundWord} />
               } else {
-                return <li key={i} className="found-words-list-item grey-out">{foundWord}</li>
+                return <FoundWordItem key={foundWord} componentClass="found-words-list-item grey-out" word={foundWord} />
               }
             }
             
-            return <li key={i} className="found-words-list-item">{foundWord}</li>
+            return <FoundWordItem key={foundWord} componentClass="found-words-list-item" word={foundWord} />
           })
         }
       </ul>

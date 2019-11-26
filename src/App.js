@@ -163,7 +163,7 @@ class App extends React.Component {
                 
                 {
                   this.state.outerLetters.map((letter, i) => {
-                    return <HiveCell key={i} letter={letter} cellType={'outer'} onClick={this.addLetter.bind(this)} />
+                    return <HiveCell key={`outer-hive-cell-${i}`} letter={letter} cellType={'outer'} onClick={this.addLetter.bind(this)} />
                   })
                 }
               </div>
