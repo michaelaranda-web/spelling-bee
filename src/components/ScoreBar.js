@@ -31,7 +31,7 @@ export class ScoreBar extends React.Component {
     return (
       <div id="score-bar">
         <div className="score-row">
-          <span className="score-icon current-score-icon"></span><span className="score-value">{this.props.currentScore}</span>
+          <span className="score-value-label">Score: </span><span className="score-value current-score">{this.props.currentScore}</span>
           <div className="points-update-section">
             {
               this.state.pointsUpdates
@@ -41,6 +41,18 @@ export class ScoreBar extends React.Component {
         <div className="score-row">
           <span className="score-icon genius-score-icon"></span>
           <span className="score-value">{this.props.geniusScore}</span>
+        </div>
+        <div className="score-row">
+          <span className="score-icon maximum-score-icon"></span>
+          <span className="score-value">{this.props.maximumPuzzleScore}</span>
+        </div>
+        <div className="score-row">
+          <span className="score-icon number-words-icon"></span>
+          <span className="score-value">{this.props.numValidWords}</span>
+        </div>
+        <div className="score-row">
+          <span className="score-icon number-pangrams-icon"></span>
+          <span className="score-value">{this.props.numberOfPangrams}</span>
         </div>
       </div>
     );

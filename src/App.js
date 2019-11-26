@@ -20,6 +20,8 @@ class App extends React.Component {
       score: 0,
       pointsNeededForGenius: 0,
       lastValidWord: null,
+      numberOfPangrams: 0,
+      maximumPuzzleScore: 0
     }
   }
   
@@ -41,6 +43,8 @@ class App extends React.Component {
       score: 0,
       pointsNeededForGenius: 0,
       lastValidWord: null,
+      numberOfPangrams: 0,
+      maximumPuzzleScore: 0,
     })
   }
   
@@ -121,6 +125,8 @@ class App extends React.Component {
       outerLetters: puzzleData.outerLetters,
       foundWords: [],
       pointsNeededForGenius: puzzleData.pointsNeededForGenius,
+      numberOfPangrams: puzzleData.numberOfPangrams,
+      maximumPuzzleScore: puzzleData.maximumPuzzleScore,
     });
   }
   
@@ -145,6 +151,10 @@ class App extends React.Component {
             <ScoreBar 
               currentScore={this.state.score}
               geniusScore={this.state.pointsNeededForGenius}
+              numValidWords={this.state.validWords.length}
+              numberOfPangrams={this.state.numberOfPangrams}
+              maximumPuzzleScore={this.state.maximumPuzzleScore}
+              
             />
             
             <Reactions 

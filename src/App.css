@@ -238,6 +238,7 @@ h1 {
 .points-update .points-value {
   font-size: 14px;
   line-height: 28px;
+  text-align: center;
 }
 
 .points-update {
@@ -260,28 +261,37 @@ h1 {
 }
 
 #score-bar {
-  font-size: 20px;
+  font-size: 15px;
   max-width: 100px;
   position: absolute;
   z-index: 100;
-  top: -45px;
+  top: -70px;
+  text-align: left;
 }
 
 #score-bar .score-row {
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 5px 0;
 }
 
-#score-bar .score-value {
+#score-bar .score-row .score-value-label {
+  margin-right: 8px;
+}
+
+#score-bar .score-row .score-value {
   min-width: 30px;
+}
+
+#score-bar .score-row .score-value.current-score {
+  font-size: 17px;
+  font-weight: bold;
 }
 
 #score-bar .score-icon {
   margin-right: 10px;
-  height: 24px;
-  width: 24px;
+  height: 15px;
+  width: 15px;
 }
 
 #score-bar .current-score-icon {
@@ -293,6 +303,27 @@ h1 {
 
 #score-bar .genius-score-icon {
   background: url(./assets/genius.svg) center no-repeat;
+  background-size: contain;
+  
+  display: inline-block;
+}
+
+#score-bar .maximum-score-icon {
+  background: url(./assets/trophy.svg) center no-repeat;
+  background-size: contain;
+  
+  display: inline-block;
+}
+
+#score-bar .number-words-icon {
+  background: url(./assets/hashtag.svg) center no-repeat;
+  background-size: contain;
+  
+  display: inline-block;
+}
+
+#score-bar .number-pangrams-icon {
+  background: url(./assets/star.svg) center no-repeat;
   background-size: contain;
   
   display: inline-block;
