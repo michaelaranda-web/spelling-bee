@@ -453,8 +453,11 @@ h1 {
 
 #found-words-section #found-words-list-box {
   height: 90%;
-  
   padding: 20px 0 25px 20px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  list-style: none;
+  
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
@@ -464,13 +467,10 @@ h1 {
   -webkit-column-fill: auto;
   -moz-column-fill: auto;
   column-fill: auto;
-  
-  border-radius: 6px;
-  border: 1px solid #dcdcdc;
 }
 
 #found-words-section #found-words-list-box .found-words-list-item {
-  display: inline-block;
+  display: inline-table;
   width: 80%;
   padding: 4px 0;
   margin-bottom: 7px;
@@ -478,7 +478,7 @@ h1 {
   margin-right: 10px;
   text-align: left;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #found-words-section #found-words-list-box .found-words-list-item.grey-out {
