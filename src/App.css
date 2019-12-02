@@ -512,7 +512,6 @@ h1 {
     font-size: 30px;
     text-anchor: middle;
     text-transform: uppercase;
-    pointer-events: none;
 }
 
 .hive.shuffling .outer>.cell-letter {
