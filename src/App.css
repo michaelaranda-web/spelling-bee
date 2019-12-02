@@ -508,6 +508,7 @@ h1 {
 }
 
 .hive .cell-letter {
+    cursor: pointer;
     font-weight: 700;
     font-size: 30px;
     text-anchor: middle;
@@ -532,6 +533,7 @@ h1 {
 
 .hive-cell {
     position: absolute;
+    cursor: pointer;
     top: calc(100% / 3);
     left: 30%;
     width: 40%;
