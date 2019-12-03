@@ -1,3 +1,15 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: inherit;
+}
+
+#root {
+  height: inherit;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -484,17 +496,17 @@ h1 {
 }
 
 .hive {
-    position: relative;
-    width: 100%;
-    padding-bottom: 103.92305%;
+  position: relative;
+  width: 100%;
+  padding-bottom: 103.92305%;
 }
 
 .hive .cell-letter {
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 30px;
-    text-anchor: middle;
-    text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 35px;
+  text-anchor: middle;
+  text-transform: uppercase;
 }
 
 .hive.shuffling .outer>.cell-letter {
@@ -641,7 +653,7 @@ h1 {
 html.dark-mode {
   background: rgb(0,71,85);
   background: radial-gradient(circle, rgba(0,71,85,1) 0%, rgba(0,71,85,1) 26%, rgba(0,0,0,1) 85%);
-  text-shadow: 0 0 5px #41ecff;
+  text-shadow: 0 0 5px #717171;
   color: white;
 }
 
@@ -660,8 +672,8 @@ html.dark-mode .fetching-message {
 }
 
 html.dark-mode #puzzle-fetcher #puzzle-options {
-  box-shadow: 0px 0px 5px #41ecff;
-  border: 1px solid #463a8a;
+  box-shadow: 0px 0px 5px #1eff2a;
+  border: 1px solid #75b371;
 }
 
 html.dark-mode #puzzle-fetcher #puzzle-options .puzzle-option {
@@ -694,10 +706,12 @@ html.dark-mode .hive-cell .cell-fill {
   fill: transparent;
   -webkit-transition: all 100ms;
   transition: all 100ms;
+  stroke: #00ead2bf;
 }
 
 html.dark-mode .hive .cell-letter {
   fill: white;
+  text-shadow: 0 0 5px #717171;
 }
 
 html.dark-mode .hive .hive-cell.center .cell-letter {
@@ -706,12 +720,25 @@ html.dark-mode .hive .hive-cell.center .cell-letter {
  
 html.dark-mode .hive-action {
   text-shadow: none;
-  box-shadow: 0px 0px 5px #41ecff;
-  background-color: white;
+  background-color: transparent;
+  box-shadow: 0px 0px 5px #1eff2a;
+  border: 1px solid #75b371;
+  text-shadow: 0 0 20px #6b6b6b;
+  color: white;
+}
+
+html.dark-mode #found-words-section #found-words-list-box {
+  box-shadow: 0px 0px 5px #1eff2a;
+  border: 1px solid #75b371;
+}
+
+html.dark-mode #found-words-section #found-words-list-box .found-words-list-item {
+  color: #00ffff;
+  text-shadow: 0 0 15px #007086;
 }
 
 html.dark-mode #found-words-section #found-words-list-box .found-words-list-item.grey-out {
-  color: #ffffff26;
+  color: #2b92c1;
 }
 
 html.dark-mode .points-update {
@@ -720,9 +747,35 @@ html.dark-mode .points-update {
 
 html.dark-mode .points-update:before {
   display: inline-block;
+  color: #00ffff;
   content: "+";
 }
 
 html.dark-mode .points-update .points-value {
   display: inline-block;
+  color: #00ffff;
+}
+
+html.dark-mode #score-bar .genius-score-icon {
+  background: url(./assets/brain-and-head-tron.png) center no-repeat;
+  background-size: contain;
+}
+
+html.dark-mode #score-bar .maximum-score-icon {
+  background: url(./assets/sports-trophy-cup-tron.png) center no-repeat;
+  background-size: contain;
+}
+
+html.dark-mode #score-bar .number-words-icon {
+  background: url(./assets/hashtag-tron.png) center no-repeat;
+  background-size: contain;
+}
+
+html.dark-mode #score-bar .number-pangrams-icon {
+  background: url(./assets/star-tron.png) center no-repeat;
+  background-size: contain;
+}
+
+html.dark-mode .hive-action__shuffle {
+  background: url(./assets/shuffle-tron.png) center no-repeat;
 }

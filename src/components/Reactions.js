@@ -42,8 +42,9 @@ export class Reactions extends React.Component {
   getReaction(reaction, key) {
     if (reaction === 'genius') {
       return (
-        <div className='reaction' key={key}>
-          <div className="reaction-text">You're a genius like me!</div>
+        <div className='reaction reaction-mo' key={key}>
+          <div className="reaction-text">You're&nbsp;a&nbsp;genius,</div>
+          <div className="reaction-text">just&nbsp;like&nbsp;me!</div>
           <div className="reaction-face-mo"></div>
         </div>
       );
@@ -64,7 +65,8 @@ export class Reactions extends React.Component {
     } else if (reaction === 'pangram') {
       return (
         <div className='reaction' key={key}>
-          <div className="reaction-text">Oh man! A pangram!</div>
+          <div className="reaction-text">Oh&nbsp;man!</div>
+          <div className="reaction-text">A&nbsp;pangram!</div>
           <div className="reaction-face-david"></div>  
         </div>
       );
