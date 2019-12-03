@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .App-logo {
@@ -493,6 +494,7 @@ h1 {
 
 .sb-hive {
     width: 90%;
+    max-width: 250px;
     margin: 25px auto;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
