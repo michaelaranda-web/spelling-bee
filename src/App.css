@@ -77,7 +77,7 @@ h1 {
 #puzzle-fetcher #puzzle-options {
   display: flex;
   align-items: center;
-  width: 325px;
+  max-width: 325px;
   margin: 0 auto;
   height: 30px;
   font-size: 14px;
@@ -319,9 +319,8 @@ h1 {
 
 #reaction-section {
   position: absolute;
-  right: -65px;
-  top: -45px;
-  width: 200px;
+  right: 75px;
+  top: -52px;
 }
 
 .reaction {
@@ -353,6 +352,10 @@ h1 {
   100% {
     opacity: 0;
   }
+}
+
+.reaction.reaction-mo {
+  left: -20px;
 }
 
 .reaction.show-reaction {
