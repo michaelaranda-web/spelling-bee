@@ -55,7 +55,7 @@ class App extends React.Component {
     
     // Tron Secret Theme
     if (word === `${centerLetter}${centerLetter}${centerLetter}${centerLetter}${centerLetter}`) {
-      this.setState({theme: 'tron'})      
+      document.querySelector('html').classList.add('dark-mode'); 
     } else {
       const isValidWord = this.state.validWords.indexOf(word) > -1;
       const notYetFound = this.state.foundWords.indexOf(word) === -1;
@@ -139,7 +139,7 @@ class App extends React.Component {
   
   render() {
     return (
-      <div className={`App ${this.state.theme === 'tron' ? 'dark-mode' : ''}`}>
+      <div className='App'>
         <div className="app-section left-app-section">
           <h1>Superior Spelling Bee App</h1>
           

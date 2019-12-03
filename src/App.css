@@ -2,26 +2,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
 }
 
 h1 {
@@ -658,91 +638,91 @@ h1 {
  * DARK MODE STYLES
  */
  
-.App.dark-mode {
+html.dark-mode {
   background: rgb(0,71,85);
   background: radial-gradient(circle, rgba(0,71,85,1) 0%, rgba(0,71,85,1) 26%, rgba(0,0,0,1) 85%);
   text-shadow: 0 0 5px #41ecff;
   color: white;
 }
 
-.App.dark-mode .custom-select {
+html.dark-mode .custom-select {
   text-shadow: none;
 }
 
-.App.dark-mode .date-error-message {
+html.dark-mode .date-error-message {
   color: white;
   font-size: 12px;
 }
 
-.App.dark-mode .fetching-message {
+html.dark-mode .fetching-message {
   color: white;
   font-size: 12px;
 }
 
-.App.dark-mode #puzzle-fetcher #puzzle-options {
+html.dark-mode #puzzle-fetcher #puzzle-options {
   box-shadow: 0px 0px 5px #41ecff;
   border: 1px solid #463a8a;
 }
 
-.App.dark-mode #puzzle-fetcher #puzzle-options .puzzle-option {
+html.dark-mode #puzzle-fetcher #puzzle-options .puzzle-option {
   color: #ffffff94;
   text-shadow: none;
 }
 
-.App.dark-mode #puzzle-fetcher #puzzle-options .puzzle-option.selected {
+html.dark-mode #puzzle-fetcher #puzzle-options .puzzle-option.selected {
   padding: 0px;
   background-color: transparent;
   text-shadow: 0 0 15px white;
   color: white;
 }
 
-.App.dark-mode .word-input .word-input-content::after {
+html.dark-mode .word-input .word-input-content::after {
   background: white;
   box-shadow: 0px 0px 5px #41ecff;
 }
 
-.App.dark-mode .word-input .word-input-content .center-letter {
+html.dark-mode .word-input .word-input-content .center-letter {
   color: yellow;
 }
 
-.App.dark-mode .hive-cell.outer {
+html.dark-mode .hive-cell.outer {
   overflow: visible;
   stroke-opacity: .8;
 }
 
-.App.dark-mode .hive-cell .cell-fill {
+html.dark-mode .hive-cell .cell-fill {
   fill: transparent;
   -webkit-transition: all 100ms;
   transition: all 100ms;
 }
 
-.App.dark-mode .hive .cell-letter {
+html.dark-mode .hive .cell-letter {
   fill: white;
 }
 
-.App.dark-mode .hive .hive-cell.center .cell-letter {
+html.dark-mode .hive .hive-cell.center .cell-letter {
   fill: yellow;
 }
  
-.App.dark-mode .hive-action {
+html.dark-mode .hive-action {
   text-shadow: none;
   box-shadow: 0px 0px 5px #41ecff;
   background-color: white;
 }
 
-.App.dark-mode #found-words-section #found-words-list-box .found-words-list-item.grey-out {
+html.dark-mode #found-words-section #found-words-list-box .found-words-list-item.grey-out {
   color: #ffffff26;
 }
 
-.App.dark-mode .points-update {
+html.dark-mode .points-update {
   background: none;
 }
 
-.App.dark-mode .points-update:before {
+html.dark-mode .points-update:before {
   display: inline-block;
   content: "+";
 }
 
-.App.dark-mode .points-update .points-value {
+html.dark-mode .points-update .points-value {
   display: inline-block;
 }
