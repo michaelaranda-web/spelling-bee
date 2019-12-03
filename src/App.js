@@ -21,7 +21,8 @@ class App extends React.Component {
       pointsNeededForGenius: 0,
       lastValidWord: null,
       numberOfPangrams: 0,
-      maximumPuzzleScore: 0
+      maximumPuzzleScore: 0,
+      theme: '',
     }
   }
   
@@ -49,16 +50,22 @@ class App extends React.Component {
   }
   
   submitWord() {
+    const centerLetter = this.state.centerLetter;
     const word = this.state.currentInput;
     
-    const isValidWord = this.state.validWords.indexOf(word) > -1;
-    const notYetFound = this.state.foundWords.indexOf(word) === -1;
-    
-    if (isValidWord && notYetFound) {
-      this.updateScore(word);
+    // Tron Secret Theme
+    if (word === `${centerLetter}${centerLetter}${centerLetter}${centerLetter}${centerLetter}`) {
+      this.setState({theme: 'tron'})      
+    } else {
+      const isValidWord = this.state.validWords.indexOf(word) > -1;
+      const notYetFound = this.state.foundWords.indexOf(word) === -1;
       
-      let newFoundWords = [...this.state.foundWords, word];
-      this.setState({foundWords: newFoundWords});
+      if (isValidWord && notYetFound) {
+        this.updateScore(word);
+        
+        let newFoundWords = [...this.state.foundWords, word];
+        this.setState({foundWords: newFoundWords});
+      }
     }
     
     this.setState({currentInput: ""});
@@ -132,7 +139,7 @@ class App extends React.Component {
   
   render() {
     return (
-      <div className="App">
+      <div className={`App ${this.state.theme === 'tron' ? 'dark-mode' : ''}`}>
         <div className="app-section left-app-section">
           <h1>Superior Spelling Bee App</h1>
           
