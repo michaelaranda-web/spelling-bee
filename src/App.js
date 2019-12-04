@@ -46,6 +46,7 @@ class App extends React.Component {
       lastValidWord: null,
       numberOfPangrams: 0,
       maximumPuzzleScore: 0,
+      themeEnabled: ''
     })
   }
   
@@ -55,7 +56,13 @@ class App extends React.Component {
     
     // Tron Secret Theme
     if (word === `${centerLetter}${centerLetter}${centerLetter}${centerLetter}${centerLetter}`) {
-      document.querySelector('html').classList.add('dark-mode'); 
+      if (this.state.themeEnabled === '') {
+        this.setState({themeEnabled: 'tron'});
+        document.querySelector('html').classList.add('dark-mode');
+      } else {
+        this.setState({themeEnabled: ''});
+        document.querySelector('html').classList.remove('dark-mode'); 
+      }
     } else {
       const isValidWord = this.state.validWords.indexOf(word) > -1;
       const notYetFound = this.state.foundWords.indexOf(word) === -1;
