@@ -465,6 +465,12 @@ h1 {
   column-fill: auto;
 }
 
+@media screen and (max-width: 767px) {
+  #found-words-section #found-words-list-box {
+    padding: 35px 0 25px 20px;
+  }
+}
+
 #found-words-section #found-words-counter {
   position: absolute;
   top: 7px;
