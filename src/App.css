@@ -498,6 +498,7 @@ h1 {
   text-align: left;
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 #found-words-section #found-words-list-box .found-words-list-item.grey-out {

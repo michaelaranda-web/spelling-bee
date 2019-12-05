@@ -1,7 +1,22 @@
 import React from 'react';
 
+const openInNewTab = (url) => {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
 const FoundWordItem = (props) => {
-  return <li className={props.componentClass}>{props.word}</li>;
+  const googleDefineLink = `https://www.google.com/search?q=define+${props.word}&oq=define+${props.word}`
+  
+  return (
+    <li 
+      className={props.componentClass} 
+      onClick={() => openInNewTab(googleDefineLink)}
+      title={`Click for Google definition of ${props.word}`}
+    >
+      {props.word}
+    </li>
+  );
 };
 
 export const FoundWords = (props) => {
