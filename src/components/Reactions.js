@@ -18,12 +18,12 @@ export class Reactions extends React.Component {
   
   componentDidUpdate(prevProps) {
     if (prevProps.lastValidWord !== this.props.lastValidWord && this.props.lastValidWord) {
-      this.onNewWordEntered();
+      this.onNewWordEntered(prevProps);
     }
   }
   
-  onNewWordEntered() {
-    if (this.props.score >= this.props.pointsNeededForGenius && !this.state.alreadyReachedGenius) {
+  onNewWordEntered(prevProps) {
+    if (this.props.score >= this.props.pointsNeededForGenius && prevProps.score < this.props.pointsNeededForGenius) {
       this.addNewReaction('genius');
       this.setState({ alreadyReachedGenius: true });
     } else if (this.props.lastValidWord.length === 6) {
