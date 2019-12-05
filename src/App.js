@@ -165,7 +165,6 @@ class App extends React.Component {
             <ScoreBar 
               currentScore={this.state.score}
               geniusScore={this.state.pointsNeededForGenius}
-              numValidWords={this.state.validWords.length}
               numberOfPangrams={this.state.numberOfPangrams}
               maximumPuzzleScore={this.state.maximumPuzzleScore}
               
@@ -216,6 +215,7 @@ class App extends React.Component {
           <FoundWords 
             currentInput={this.state.currentInput}
             foundWords={this.state.foundWords} 
+            numValidWords={this.state.validWords.length} 
           />
         </div>  
         

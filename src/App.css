@@ -444,6 +444,7 @@ h1 {
 
 #found-words-section {
   height: 100%;
+  position: relative;
 }
 
 #found-words-section #found-words-list-box {
@@ -462,6 +463,29 @@ h1 {
   -webkit-column-fill: auto;
   -moz-column-fill: auto;
   column-fill: auto;
+}
+
+#found-words-section #found-words-counter {
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+#found-words-section #found-words-counter .found-words-count {
+  font-weight: bold; 
+}
+
+#found-words-section #found-words-counter .found-words-counter-slash {
+  padding: 0 5px;
+  font-size: 11px;
+}
+
+#found-words-section #found-words-counter .total-words-count {
+  color: #f8cd05;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #found-words-section #found-words-list-box .found-words-list-item {
@@ -779,5 +803,7 @@ html.dark-mode #score-bar .number-pangrams-icon {
 }
 
 html.dark-mode .hive-action__shuffle {
-  background: url(./assets/shuffle-tron.png) center no-repeat;
+  background: url(./assets/shuffle-tron.svg) center no-repeat;
+  background-size: 40%;
+  height: 30px;
 }

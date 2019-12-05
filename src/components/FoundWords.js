@@ -7,6 +7,11 @@ const FoundWordItem = (props) => {
 export const FoundWords = (props) => {
   return (
     <div id="found-words-section">
+      <div id="found-words-counter">
+        <span className="found-words-count">{props.foundWords.length}</span>
+        <span className="found-words-counter-slash">out of</span>
+        <span className="total-words-count">{props.numValidWords}</span>
+      </div>
       <ul id="found-words-list-box">
         {
           props.foundWords.sort().map((foundWord) => {
