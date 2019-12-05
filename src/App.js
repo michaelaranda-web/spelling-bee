@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import './App.css';
 import { HiveCell } from './components/HiveCell';
 import PuzzleFetcher from './components/PuzzleFetcher';
@@ -17,6 +18,7 @@ class App extends React.Component {
       foundWords: [],
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
+      puzzleDate: '',
       score: 0,
       pointsNeededForGenius: 0,
       lastValidWord: null,
@@ -41,6 +43,7 @@ class App extends React.Component {
       foundWords: [],
       centerLetter: '',
       outerLetters: [' ', ' ', ' ', ' ', ' ', ' '],
+      puzzleDate: '',
       score: 0,
       pointsNeededForGenius: 0,
       lastValidWord: null,
@@ -133,11 +136,14 @@ class App extends React.Component {
   }
   
   onPuzzleDataReceive(puzzleData) {
+    const puzzleDate = moment(puzzleData.puzzleDate).format('MMM D, YYYY')
+    
     this.setState({
       validWords: puzzleData.validWords,
       centerLetter: puzzleData.centerLetter,
       outerLetters: puzzleData.outerLetters,
       foundWords: [],
+      puzzleDate,
       pointsNeededForGenius: puzzleData.pointsNeededForGenius,
       numberOfPangrams: puzzleData.numberOfPangrams,
       maximumPuzzleScore: puzzleData.maximumPuzzleScore,
@@ -167,7 +173,6 @@ class App extends React.Component {
               geniusScore={this.state.pointsNeededForGenius}
               numberOfPangrams={this.state.numberOfPangrams}
               maximumPuzzleScore={this.state.maximumPuzzleScore}
-              
             />
             
             <Reactions 
@@ -216,6 +221,7 @@ class App extends React.Component {
             currentInput={this.state.currentInput}
             foundWords={this.state.foundWords} 
             numValidWords={this.state.validWords.length} 
+            puzzleDate={this.state.puzzleDate}
           />
         </div>  
         

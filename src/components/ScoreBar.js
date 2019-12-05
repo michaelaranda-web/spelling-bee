@@ -46,6 +46,10 @@ export class ScoreBar extends React.Component {
           <span className="score-icon maximum-score-icon"></span>
           <span className="score-value">{this.props.maximumPuzzleScore}</span>
         </div>
+        <div className="score-row" title="Number of Valid Words">
+          <span className="score-icon number-words-icon"></span>
+          <span className="score-value">{this.props.numValidWords}</span>
+        </div>
         <div className="score-row" title="Number of Pangrams">
           <span className="score-icon number-pangrams-icon"></span>
           <span className="score-value">{this.props.numberOfPangrams}</span>

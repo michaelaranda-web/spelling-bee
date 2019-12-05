@@ -447,9 +447,19 @@ h1 {
   position: relative;
 }
 
+#found-words-section #puzzle-date {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
 #found-words-section #found-words-list-box {
   height: 90%;
-  padding: 20px 0 25px 20px;
+  padding: 35px 0 25px 20px;
   border-radius: 6px;
   border: 1px solid #dcdcdc;
   list-style: none;
@@ -467,7 +477,7 @@ h1 {
 
 @media screen and (max-width: 767px) {
   #found-words-section #found-words-list-box {
-    padding: 35px 0 25px 20px;
+    padding: 45px 0 25px 20px;
   }
 }
 
@@ -758,6 +768,10 @@ html.dark-mode .hive-action {
   border: 1px solid #75b371;
   text-shadow: 0 0 20px #6b6b6b;
   color: white;
+}
+
+html.dark-mode #found-words-section #puzzle-date {
+  color: #23ebff;  
 }
 
 html.dark-mode #found-words-section #found-words-list-box {

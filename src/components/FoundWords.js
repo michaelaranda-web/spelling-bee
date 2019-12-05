@@ -22,6 +22,7 @@ const FoundWordItem = (props) => {
 export const FoundWords = (props) => {
   return (
     <div id="found-words-section">
+      <div id="puzzle-date">{props.puzzleDate}</div>
       <div id="found-words-counter">
         <span className="found-words-count">{props.foundWords.length}</span>
         <span className="found-words-counter-slash">out of</span>
