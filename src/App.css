@@ -484,7 +484,7 @@ h1 {
 #found-words-section #found-words-counter {
   position: absolute;
   top: 7px;
-  right: 15px;
+  right: 20px;
   display: flex;
   align-items: center;
 }
