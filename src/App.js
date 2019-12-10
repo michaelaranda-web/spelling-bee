@@ -178,6 +178,7 @@ class App extends React.Component {
             <Reactions 
               lastValidWord={this.state.lastValidWord} 
               score={this.state.score}
+              maximumPuzzleScore={this.state.maximumPuzzleScore}
               pointsNeededForGenius={this.state.pointsNeededForGenius}
             />
             

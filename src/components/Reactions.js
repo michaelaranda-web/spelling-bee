@@ -26,6 +26,8 @@ export class Reactions extends React.Component {
     if (this.props.score >= this.props.pointsNeededForGenius && prevProps.score < this.props.pointsNeededForGenius) {
       this.addNewReaction('genius');
       this.setState({ alreadyReachedGenius: true });
+    } else if (this.props.maximumPuzzleScore === this.props.score) {
+      this.addNewReaction('finished');
     } else if (this.props.lastValidWord.length === 6) {
       this.addNewReaction('noice');
     } else if (this.isPangram(this.props.lastValidWord)) {
@@ -46,6 +48,15 @@ export class Reactions extends React.Component {
           <div className="reaction-text">You're&nbsp;a&nbsp;genius,</div>
           <div className="reaction-text">just&nbsp;like&nbsp;me!</div>
           <div className="reaction-face-mo"></div>
+        </div>
+      );
+    } else if (reaction === 'finished') {
+      return (
+        <div className='reaction reaction-krista' key={key}>
+          <div className="reaction-text">You&nbsp;got</div>
+          <div className="reaction-text">ALL&nbsp;the&nbsp;words!</div>
+          <div className="reaction-text">So&nbsp;proud&nbsp;of&nbsp;you!</div>
+          <div className="reaction-face-krista"></div>  
         </div>
       );
     } else if (reaction === 'long_word') {

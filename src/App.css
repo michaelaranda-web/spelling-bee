@@ -357,6 +357,10 @@ h1 {
   left: -20px;
 }
 
+.reaction.reaction-krista {
+  left: -20px;
+}
+
 .reaction.show-reaction {
   display: flex;
 }
@@ -371,6 +375,14 @@ h1 {
 
 .reaction-face-mo {
   background: url(./assets/mo.png) center no-repeat;
+  background-size: contain;
+  
+  height: 58px;
+  width: 58px;
+}
+
+.reaction-face-krista {
+  background: url(./assets/krista.png) center no-repeat;
   background-size: contain;
   
   height: 58px;
