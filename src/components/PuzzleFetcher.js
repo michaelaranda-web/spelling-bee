@@ -20,8 +20,8 @@ export class PuzzleFetcher extends React.Component {
   
   fetchPuzzle(date) {
     let puzzleDataRequestUrl = date === "random"
-      ? `https://cors-anywhere.herokuapp.com/http://ec2-34-219-176-146.us-west-2.compute.amazonaws.com:8080/random_puzzle`
-      : `https://cors-anywhere.herokuapp.com/http://ec2-34-219-176-146.us-west-2.compute.amazonaws.com:8080/puzzles/${date}`
+      ? `https://cors-anywhere.herokuapp.com/http://ec2-52-27-231-12.us-west-2.compute.amazonaws.com:8080/random_puzzle`
+      : `https://cors-anywhere.herokuapp.com/http://ec2-52-27-231-12.us-west-2.compute.amazonaws.com:8080/puzzles/${date}`
     
     this.setState({fetching: true});
     
