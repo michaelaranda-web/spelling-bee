@@ -25,10 +25,12 @@ h1 {
 }
   
 .left-app-section {
+  height: inherit;
   background-color: transparent;
 }
 
 .right-app-section {
+  height: inherit;
   background-color: transparent;
 }
 
@@ -470,8 +472,8 @@ h1 {
 }
 
 #found-words-section #found-words-list-box {
-  height: 90%;
-  padding: 35px 0 25px 20px;
+  height: 85%;
+  padding: 35px 0 0px 20px;
   border-radius: 6px;
   border: 1px solid #dcdcdc;
   list-style: none;
@@ -542,7 +544,7 @@ h1 {
 .sb-hive {
     width: 90%;
     max-width: 250px;
-    margin: 25px auto;
+    margin: 5px auto 10px;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -669,7 +671,8 @@ h1 {
     -ms-flex-pack: justify;
     justify-content: center;
     -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap
+    flex-wrap: nowrap;
+    touch-action: manipulation;
 }
 
 .hive-action {
