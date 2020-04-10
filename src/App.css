@@ -472,7 +472,7 @@ h1 {
 }
 
 #found-words-section #found-words-list-box {
-  height: 85%;
+  height: 100%;
   padding: 35px 0 0px 20px;
   border-radius: 6px;
   border: 1px solid #dcdcdc;
