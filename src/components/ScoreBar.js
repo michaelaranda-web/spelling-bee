@@ -43,7 +43,7 @@ export class ScoreBar extends React.Component {
           <span className="score-value">{this.props.geniusScore}</span>
         </div>
         <div className="score-row" title="Maximum Puzzle Score">
-          <span className="score-icon maximum-score-icon"></span>
+          <span className="score-icon maximum-score-icon" onClick={this.props.onToggleShowWordPositions}></span>
           <span className="score-value">{this.props.maximumPuzzleScore}</span>
         </div>
         <div className="score-row" title="Number of Pangrams">

@@ -7,17 +7,36 @@ const openInNewTab = (url) => {
 
 const FoundWordItem = (props) => {
   const googleDefineLink = `https://www.google.com/search?q=define+${props.word}&oq=define+${props.word}`
+  const onItemClick = () => {
+    if (props.value) {
+      openInNewTab(googleDefineLink)
+    }
+  }
   
   return (
     <li 
       className={props.componentClass} 
-      onClick={() => openInNewTab(googleDefineLink)}
-      title={`Click for Google definition of ${props.word}`}
+      onClick={() => onItemClick()}
+      title={props.value ? `Click for Google definition of ${props.word}` : "Word not yet found"}
     >
-      {props.word}
+      {props.value}
     </li>
   );
 };
+
+const WordDisplayItems = (props) => {
+  if (props.showWordPositions) {
+    return props.validWords.sort().map((validWord) => {
+      const value = props.foundWords.includes(validWord) ? validWord : ""
+    
+      return <FoundWordItem key={validWord} componentClass="found-words-list-item" value={value} />
+    })
+  } else {
+    return props.foundWords.sort().map((foundWord) => {
+      return <FoundWordItem key={foundWord} componentClass="found-words-list-item" value={foundWord} />
+    })
+  }
+}
 
 export const FoundWords = (props) => {
   return (
@@ -26,14 +45,10 @@ export const FoundWords = (props) => {
       <div id="found-words-counter">
         <span className="found-words-count">{props.foundWords.length}</span>
         <span className="found-words-counter-slash">out of</span>
-        <span className="total-words-count">{props.numValidWords}</span>
+        <span className="total-words-count">{props.validWords.length}</span>
       </div>
       <ul id="found-words-list-box">
-        {
-          props.foundWords.sort().map((foundWord) => {
-            return <FoundWordItem key={foundWord} componentClass="found-words-list-item" word={foundWord} />
-          })
-        }
+        { WordDisplayItems(props) }
       </ul>
     </div>
   )

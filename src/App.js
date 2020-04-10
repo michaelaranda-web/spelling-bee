@@ -25,6 +25,7 @@ class App extends React.Component {
       numberOfPangrams: 0,
       maximumPuzzleScore: 0,
       theme: '',
+      showWordPositions: false
     }
   }
   
@@ -135,6 +136,12 @@ class App extends React.Component {
     }
   }
   
+  onToggleShowWordPositions() {
+    this.setState({
+      showWordPositions: !this.state.showWordPositions
+    })
+  }
+  
   onPuzzleDataReceive(puzzleData) {
     const puzzleDate = moment(puzzleData.puzzleDate).format('MMM D, YYYY')
     
@@ -173,6 +180,7 @@ class App extends React.Component {
               geniusScore={this.state.pointsNeededForGenius}
               numberOfPangrams={this.state.numberOfPangrams}
               maximumPuzzleScore={this.state.maximumPuzzleScore}
+              onToggleShowWordPositions={this.onToggleShowWordPositions.bind(this)}
             />
             
             <Reactions 
@@ -221,8 +229,9 @@ class App extends React.Component {
           <FoundWords 
             currentInput={this.state.currentInput}
             foundWords={this.state.foundWords} 
-            numValidWords={this.state.validWords.length} 
+            validWords={this.state.validWords} 
             puzzleDate={this.state.puzzleDate}
+            showWordPositions={this.state.showWordPositions}
           />
         </div>  
         

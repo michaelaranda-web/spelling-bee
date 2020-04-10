@@ -529,6 +529,7 @@ h1 {
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  min-height: 14px;
 }
 
 #found-words-section #found-words-list-box .found-words-list-item.grey-out {
@@ -794,10 +795,10 @@ html.dark-mode #found-words-section #found-words-list-box {
   border: 1px solid #75b371;
 }
 
-/*html.dark-mode #found-words-section #found-words-list-box .found-words-list-item {*/
-/*  color: #00ffff;*/
-/*  text-shadow: 0 0 15px #007086;*/
-/*}*/
+html.dark-mode #found-words-section #found-words-list-box .found-words-list-item {
+  color: #00ffff;
+  text-shadow: 0 0 15px #007086;
+}
 
 html.dark-mode #found-words-section #found-words-list-box .found-words-list-item.grey-out {
   color: #2b92c1;
