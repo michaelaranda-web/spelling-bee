@@ -6,7 +6,7 @@ const openInNewTab = (url) => {
 }
 
 const FoundWordItem = (props) => {
-  const googleDefineLink = `https://www.google.com/search?q=define+${props.word}&oq=define+${props.word}`
+  const googleDefineLink = `https://www.google.com/search?q=define+${props.value}&oq=define+${props.value}`
   const onItemClick = () => {
     if (props.value) {
       openInNewTab(googleDefineLink)
@@ -17,7 +17,7 @@ const FoundWordItem = (props) => {
     <li 
       className={props.componentClass} 
       onClick={() => onItemClick()}
-      title={props.value ? `Click for Google definition of ${props.word}` : "Word not yet found"}
+      title={props.value ? `Click for Google definition of ${props.value}` : "Word not yet found"}
     >
       {props.value}
     </li>
