@@ -65,7 +65,7 @@ export class PuzzleDatePicker extends React.Component {
           <CustomSelect 
             initialValue={this.state.year}
             onSelect={(year) => { this.handleYearChange(year) }}
-            options={["2018", "2019"]}
+            options={["2018", "2019", "2020", "2021"]}
           />
           <div className="date-picker-container-label">Year</div>
         </div>
